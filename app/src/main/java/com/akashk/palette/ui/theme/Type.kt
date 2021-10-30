@@ -1,4 +1,4 @@
-package com.adammcneilly.androidapptemplate.ui.theme
+package com.akashk.palette.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

@@ -1,24 +1,8 @@
-# Android App Template
-
-This is a GitHub template repository intended to kickstart development on an Android application. This project comes set with a handful of tools that [Adam](https://github.com/AdamMc331) finds important and relevant to every project. If you think something is missing, or feel strongly that a setup should be changed, please submit an [Issue](https://github.com/AdamMc331/AndroidAppTemplate/issues/new). 
-
-## Walkthrough
-
-If you'd like a video walk through of this template and all it has to offer, you can find that on YouTube. 
-
-https://youtu.be/E0iMUWJn76E
-
-## Using This Template
-
-To use this template in your own project, click the "Use this template" button at the top right of the repository. Once you do, a repository will be created for your account that you can clone and use on your device.
-
-Do note that once you do so, you'll need to update anywhere `AndroidAppTemplate` is referenced. This includes, but might not be limited to:
+# Palette App
 
 * Project packages.
 * AndroidManifest file.
 * Strings.xml (for app_name string). 
-
-There is an open issue to [automate](https://github.com/AdamMc331/AndroidAppTemplate/issues/1) this process.
 
 ## What's Included
 
