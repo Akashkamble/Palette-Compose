@@ -8,13 +8,13 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.akashk.palette.ui.theme.AndroidAppTemplateTheme
+import com.akashk.palette.ui.theme.PaletteTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            AndroidAppTemplateTheme {
+            PaletteTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
                     Greeting("Android")
@@ -32,7 +32,7 @@ fun Greeting(name: String) {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    AndroidAppTemplateTheme {
+    PaletteTheme {
         Greeting("Android")
     }
 }

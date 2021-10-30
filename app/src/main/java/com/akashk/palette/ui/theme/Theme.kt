@@ -7,15 +7,15 @@ import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 
 private val DarkColorPalette = darkColors(
-    primary = Purple200,
-    primaryVariant = Purple700,
-    secondary = Teal200
+    primary = dark_primary,
+    primaryVariant = dark_primaryContainer,
+    secondary = dark_secondary
 )
 
 private val LightColorPalette = lightColors(
-    primary = Purple500,
-    primaryVariant = Purple700,
-    secondary = Teal200
+    primary = light_primary,
+    primaryVariant = light_primaryContainer,
+    secondary = light_secondary
 
     /* Other default colors to override
     background = Color.White,
@@ -28,9 +28,9 @@ private val LightColorPalette = lightColors(
 )
 
 @Composable
-fun AndroidAppTemplateTheme(
+fun PaletteTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable() () -> Unit
+    content: @Composable () -> Unit
 ) {
     val colors = if (darkTheme) {
         DarkColorPalette
