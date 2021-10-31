@@ -22,5 +22,9 @@ ext {
             composeMaterial3 : "1.0.0-alpha01",
             //https://developer.android.com/jetpack/androidx/releases/compose-material3
             composeInsets : "0.20.0",
+
+            cameraxStable : "1.0.2",
+
+            cameraViewAlpha : "1.0.0-alpha30",
     ]
 }

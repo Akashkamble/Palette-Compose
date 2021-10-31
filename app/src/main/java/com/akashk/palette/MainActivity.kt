@@ -11,6 +11,7 @@ import androidx.core.view.WindowCompat
 import com.akashk.palette.palettelist.PaletteListScreen
 import com.akashk.palette.ui.theme.PaletteTheme
 import androidx.compose.ui.graphics.Color
+import com.akashk.palette.colorpicker.ColorPickerScreen
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 class MainActivity : ComponentActivity() {
@@ -21,7 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             PaletteTheme {
                 ConfigureSystemBars()
-                PaletteListScreen()
+                ColorPickerScreen()
             }
         }
     }
