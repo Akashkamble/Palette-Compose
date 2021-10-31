@@ -18,5 +18,9 @@ ext {
             espresso       : "3.4.0",
             // https://github.com/material-components/material-components-android/releases
             material       : "1.4.0",
+            //https://developer.android.com/jetpack/androidx/releases/compose-material3
+            composeMaterial3 : "1.0.0-alpha01",
+            //https://developer.android.com/jetpack/androidx/releases/compose-material3
+            composeInsets : "0.20.0",
     ]
 }
