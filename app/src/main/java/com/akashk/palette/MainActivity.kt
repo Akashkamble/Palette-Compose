@@ -13,7 +13,9 @@ import com.akashk.palette.ui.theme.PaletteTheme
 import androidx.compose.ui.graphics.Color
 import com.akashk.palette.colorpicker.ColorPickerScreen
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @ExperimentalMaterial3Api
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +24,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             PaletteTheme {
                 ConfigureSystemBars()
-                ColorPickerScreen()
+//                ColorPickerScreen()
+                PaletteListScreen()
             }
         }
     }

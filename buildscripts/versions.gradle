@@ -26,5 +26,17 @@ ext {
             cameraxStable : "1.0.2",
 
             cameraViewAlpha : "1.0.0-alpha30",
+
+            // https://developer.android.com/jetpack/androidx/releases/hilt
+            hiltNavigationCompose: "1.0.0-rc01",
+            // https://github.com/mockk/mockk/releases
+            mockk                : "1.12.2",
+            // https://github.com/Kotlin/kotlinx.coroutines/releases
+            coroutinesTest       : "1.5.2",
+            // https://github.com/google/truth/releases
+            truth                : "1.1.3",
+            // https://github.com/cashapp/turbine/releases
+            turbine              : "0.7.0",
+
     ]
 }

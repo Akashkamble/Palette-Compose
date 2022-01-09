@@ -1,6 +1,8 @@
 plugins {
     id "com.android.application"
     id "kotlin-android"
+    id "kotlin-kapt"
+    id "dagger.hilt.android.plugin"
 }
 
 android {
@@ -70,6 +72,18 @@ dependencies {
     implementation "androidx.camera:camera-camera2:$rootProject.ext.versions.cameraxStable"
     implementation "androidx.camera:camera-lifecycle:$rootProject.ext.versions.cameraxStable"
     implementation "androidx.camera:camera-view:$rootProject.ext.versions.cameraViewAlpha"
+
+    // hilt
+    implementation "com.google.dagger:hilt-android:$hiltVersion"
+    kapt "com.google.dagger:hilt-compiler:$hiltVersion"
+
+    //hilt-navigation
+    implementation "androidx.hilt:hilt-navigation-compose:$rootProject.ext.versions.hiltNavigationCompose"
+
+    testImplementation "io.mockk:mockk:$rootProject.ext.versions.mockk"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$rootProject.ext.versions.coroutinesTest"
+    testImplementation "com.google.truth:truth:$rootProject.ext.versions.truth"
+    testImplementation "app.cash.turbine:turbine:$rootProject.ext.versions.turbine"
 
     testImplementation "junit:junit:$rootProject.ext.versions.junit"
     androidTestImplementation "androidx.test.ext:junit:$rootProject.ext.versions.androidxTest"

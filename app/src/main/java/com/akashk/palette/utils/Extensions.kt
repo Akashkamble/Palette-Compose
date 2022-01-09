@@ -19,5 +19,5 @@ suspend fun Context.getCameraProvider(): ProcessCameraProvider = suspendCoroutin
 val Context.executor: Executor
     get() = ContextCompat.getMainExecutor(this)
 
-val String.color
+val String.toComposeColor
     get() = Color(android.graphics.Color.parseColor(this))
