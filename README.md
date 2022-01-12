@@ -11,7 +11,6 @@ A number of third party dependencies are included in this template. They are als
 The dependencies in the template include:
 
 * [Ktlint](/documentation/StaticAnalysis.md) for formatting.
-* [Detekt](/documentation/StaticAnalysis.md) for code smells.
 * [Git Hooks](/documentation/GitHooks.md) for automatically perform static analysis checks. 
 * [Gradle Versions Plugin](/documentation/VersionsPlugin.md) for checking all dependencies for new versions.
 * [GitHub Actions](/documentation/GitHubActions.md) for running continuous integration and ensuring code quality with every PR. 
@@ -27,7 +26,6 @@ You may notice that dependencies are set up in a very specific way. Each of the 
 ```groovy
 subprojects {
     apply from: "../buildscripts/ktlint.gradle"
-    apply from: "../buildscripts/detekt.gradle"
     apply from: "../buildscripts/versionsplugin.gradle"
 }
 ```
