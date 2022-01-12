@@ -5,7 +5,6 @@ import com.akashk.palette.core.Result
 import com.akashk.palette.core.ui.UIText
 import com.akashk.palette.domain.data.Palette
 import com.akashk.palette.palettelist.PaletteListViewState
-import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Rule
 import org.junit.Test
 
@@ -44,30 +43,6 @@ class PaletteListViewModelTest {
             .buildViewModel()
             .assertViewState(
                 expectedViewState = PaletteListViewState.Error(UIText.StringText(errorMessage))
-            )
-    }
-
-    @Test
-    fun navigateToAddNewPaletteScreen() = runBlockingTest {
-
-        val palette = Palette(
-            id = 1,
-            name = "Palette 1",
-            colorList = listOf("#6750a4", "#4534ff", "#0004fc", "#6750d8")
-        )
-
-        val expectedList = listOf(palette)
-        val paletteListResult = Result.Success(expectedList)
-
-        testRobot
-            .mockAllPalettesResult(paletteListResult)
-            .buildViewModel()
-            .assertViewState(
-                expectedViewState = PaletteListViewState.Loaded(expectedList)
-            )
-            .mockAddNewPaletteState()
-            .assertViewState(
-                expectedViewState = PaletteListViewState.AddNewPalette
             )
     }
 }

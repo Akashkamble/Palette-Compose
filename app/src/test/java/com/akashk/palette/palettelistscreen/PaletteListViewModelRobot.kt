@@ -21,10 +21,6 @@ class PaletteListViewModelRobot {
         fakePaletteRepository.mockPaletteListResult(result)
     }
 
-    fun mockAddNewPaletteState() = apply {
-        viewModel.addNewPalette()
-    }
-
     fun assertViewState(expectedViewState: PaletteListViewState) = apply {
         val actualViewState = viewModel.viewState.value
         assertThat(actualViewState).isEqualTo(expectedViewState)

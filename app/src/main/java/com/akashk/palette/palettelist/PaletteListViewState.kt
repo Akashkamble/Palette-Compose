@@ -22,10 +22,4 @@ sealed class PaletteListViewState {
     data class Error(
         val errorMessage: UIText,
     ) : PaletteListViewState()
-
-    /**
-     * This indicates the add new palette button is clicked
-     * and user will be navigate to Add palette Screen.
-     */
-    object AddNewPalette : PaletteListViewState()
 }
