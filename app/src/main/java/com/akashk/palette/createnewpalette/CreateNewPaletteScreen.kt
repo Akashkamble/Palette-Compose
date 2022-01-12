@@ -12,6 +12,7 @@ import androidx.compose.material.Text
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,13 +23,24 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.akashk.palette.core.ui.components.PaletteTextField
 import com.akashk.palette.core.ui.getString
+import com.akashk.palette.destinations.ColorPickerScreenDestination
 import com.akashk.palette.ui.theme.PaletteTheme
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
+@Destination
 @Composable
 fun CreateNewPaletteScreen(
+    navigator: DestinationsNavigator,
     viewModel: CreateNewPaletteViewModel = hiltViewModel()
 ) {
     val viesState = viewModel.viewState.collectAsState()
+    DisposableEffect(key1 = viesState.value) {
+        if (viesState.value is NewPaletteState.NavigateToColorPicker) {
+            navigator.navigate(ColorPickerScreenDestination)
+        }
+        onDispose { }
+    }
     CreateNewPaletteContent(
         viewState = viesState.value,
         onAddClick = {
@@ -45,12 +57,12 @@ fun CreateNewPaletteContent(
     viewState: NewPaletteState,
     onTextChanged: (String) -> Unit,
     onAddClick: () -> Unit,
-    modifier: Modifier = Modifier
-        .fillMaxSize()
-        .padding(all = 16.dp),
+    modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = modifier,
+        modifier = modifier
+            .fillMaxSize()
+            .padding(all = 16.dp),
         verticalArrangement = Arrangement.SpaceAround,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

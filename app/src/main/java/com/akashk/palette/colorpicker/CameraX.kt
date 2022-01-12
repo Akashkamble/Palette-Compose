@@ -76,7 +76,7 @@ private fun setupImageAnalysis(
     analyzer: ImageAnalysis.Analyzer
 ): ImageAnalysis {
     return ImageAnalysis.Builder()
-        .setTargetResolution(Size(720, 1280))
+        .setTargetResolution(Size(640, 640))
         .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
         .build()
         .apply {

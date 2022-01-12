@@ -9,9 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
-import com.akashk.palette.createnewpalette.CreateNewPaletteScreen
 import com.akashk.palette.ui.theme.PaletteTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.ramcosta.composedestinations.DestinationsNavHost
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,9 +23,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             PaletteTheme {
                 ConfigureSystemBars()
-//                ColorPickerScreen()
-//                PaletteListScreen()
-                CreateNewPaletteScreen()
+                DestinationsNavHost(
+                    navGraph = NavGraphs.root
+                )
             }
         }
     }
