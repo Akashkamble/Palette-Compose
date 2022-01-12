@@ -1,7 +1,6 @@
 package com.akashk.palette.ui.theme
 import androidx.compose.ui.graphics.Color
 
-
 val light_primary = Color(0xFF6750a4)
 val light_onPrimary = Color(0xFFffffff)
 val light_primaryContainer = Color(0xFFeaddff)

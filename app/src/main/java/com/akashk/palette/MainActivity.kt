@@ -7,11 +7,11 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
+import com.akashk.palette.createnewpalette.CreateNewPaletteScreen
 import com.akashk.palette.palettelist.PaletteListScreen
 import com.akashk.palette.ui.theme.PaletteTheme
-import androidx.compose.ui.graphics.Color
-import com.akashk.palette.colorpicker.ColorPickerScreen
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,11 +25,11 @@ class MainActivity : ComponentActivity() {
             PaletteTheme {
                 ConfigureSystemBars()
 //                ColorPickerScreen()
-                PaletteListScreen()
+//                PaletteListScreen()
+                CreateNewPaletteScreen()
             }
         }
     }
-
 
     @Composable
     private fun ConfigureSystemBars() {
@@ -44,4 +44,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-

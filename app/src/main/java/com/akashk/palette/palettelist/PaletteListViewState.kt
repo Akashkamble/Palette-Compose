@@ -28,5 +28,4 @@ sealed class PaletteListViewState {
      * and user will be navigate to Add palette Screen.
      */
     object AddNewPalette : PaletteListViewState()
-
 }

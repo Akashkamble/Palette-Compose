@@ -12,5 +12,5 @@ import dagger.hilt.components.SingletonComponent
 abstract class RepositoryModule {
 
     @Binds
-    abstract fun bindPaletteRepository(repo : DemoPaletteRepository) : PaletteRepository
+    abstract fun bindPaletteRepository(repo: DemoPaletteRepository): PaletteRepository
 }

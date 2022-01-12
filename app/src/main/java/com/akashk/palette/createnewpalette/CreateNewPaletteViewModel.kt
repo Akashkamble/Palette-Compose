@@ -2,11 +2,10 @@ package com.akashk.palette.createnewpalette
 
 import androidx.lifecycle.ViewModel
 import com.akashk.palette.core.ui.UIText
-import com.akashk.palette.palettelist.PaletteListViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import javax.inject.Inject
 
 @HiltViewModel
 class CreateNewPaletteViewModel @Inject constructor() : ViewModel() {
@@ -15,7 +14,7 @@ class CreateNewPaletteViewModel @Inject constructor() : ViewModel() {
         MutableStateFlow(NewPaletteState.Initial)
     val viewState: StateFlow<NewPaletteState> = _viewState
 
-    fun enterPaletteName(name : String) {
+    fun enterPaletteName(name: String) {
         val currentName = viewState.value.paletteName
         val error = (_viewState.value as? NewPaletteState.Active)?.paletteNameError
 
@@ -25,9 +24,9 @@ class CreateNewPaletteViewModel @Inject constructor() : ViewModel() {
         )
     }
 
-    fun onContinue(name : String) {
+    fun onContinue(name: String) {
         val currentName = viewState.value.paletteName
-        if(currentName.isEmpty()){
+        if (currentName.isEmpty()) {
             _viewState.value = NewPaletteState.Active(
                 paletteName = name,
                 paletteNameError = UIText.StringText("Enter valid palette name")

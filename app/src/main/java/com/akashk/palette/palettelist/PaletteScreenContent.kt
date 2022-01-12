@@ -13,6 +13,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -31,9 +32,8 @@ fun PaletteScreenContent(
     modifier: Modifier = Modifier
 ) {
     Box(modifier = modifier.fillMaxSize()) {
-        when(viewState){
+        when (viewState) {
             is PaletteListViewState.Error -> {
-
             }
             is PaletteListViewState.Loaded -> {
                 LoadedPaletteContent(
@@ -52,7 +52,6 @@ fun PaletteScreenContent(
             }
         }
     }
-
 }
 
 @ExperimentalMaterial3Api
@@ -61,7 +60,7 @@ private fun LoadedPaletteContent(
     viewState: PaletteListViewState.Loaded,
     onAddClick: () -> Unit,
     modifier: Modifier
-){
+) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
         floatingActionButton = {
@@ -82,11 +81,9 @@ private fun LoadedPaletteContent(
             PaletteList(
                 palettes = viewState.palettes,
                 onPaletteClick = {
-
                 },
             )
         }
-
     }
 }
 

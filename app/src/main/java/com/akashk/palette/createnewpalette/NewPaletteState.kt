@@ -1,11 +1,10 @@
 package com.akashk.palette.createnewpalette
 
-import android.net.wifi.hotspot2.pps.Credential
 import com.akashk.palette.core.ui.UIText
 
 sealed class NewPaletteState(
-    open val paletteName : String
-){
+    open val paletteName: String
+) {
 
     /**
      * When user lands on screen the initially the edit text will have blank string.
@@ -18,7 +17,7 @@ sealed class NewPaletteState(
      */
     data class Active(
         override val paletteName: String,
-        val paletteNameError : UIText? = null
+        val paletteNameError: UIText? = null
     ) : NewPaletteState(
         paletteName = paletteName
     )
@@ -27,7 +26,7 @@ sealed class NewPaletteState(
      * When user has clicked the button pass palette name to ColorPickerScreen.
      */
     data class NavigateToColorPicker(
-        override val paletteName : String
+        override val paletteName: String
     ) : NewPaletteState(
         paletteName = paletteName
     )

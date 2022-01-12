@@ -16,7 +16,7 @@ class CreateNewPaletteViewModelRobot {
         viewModel.enterPaletteName(name = name)
     }
 
-    fun onContinueClick(name : String) = apply {
+    fun onContinueClick(name: String) = apply {
         viewModel.onContinue(name)
     }
 
@@ -41,5 +41,4 @@ class CreateNewPaletteViewModelRobot {
             this.cancel()
         }
     }
-
 }

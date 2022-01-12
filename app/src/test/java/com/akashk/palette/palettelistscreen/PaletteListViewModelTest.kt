@@ -16,7 +16,7 @@ class PaletteListViewModelTest {
     val coroutinesTestRule = CoroutinesTestRule()
 
     @Test
-    fun fetchPaletteListSuccessfully(){
+    fun fetchPaletteListSuccessfully() {
         val palette = Palette(
             id = 1,
             name = "Palette 1",
@@ -35,7 +35,7 @@ class PaletteListViewModelTest {
     }
 
     @Test
-    fun fetchPaletteListWithError(){
+    fun fetchPaletteListWithError() {
         val errorMessage = "Something went wrong"
         val expectedResult = Result.Error(Throwable())
 

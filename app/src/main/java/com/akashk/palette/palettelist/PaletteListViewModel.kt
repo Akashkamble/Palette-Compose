@@ -7,11 +7,11 @@ import com.akashk.palette.core.ui.UIText
 import com.akashk.palette.domain.data.Palette
 import com.akashk.palette.domain.data.PaletteRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import javax.inject.Inject
 
 @HiltViewModel
 class PaletteListViewModel @Inject constructor(

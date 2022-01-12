@@ -15,17 +15,17 @@ import com.akashk.palette.ui.theme.PaletteTheme
 
 @Composable
 fun PaletteList(
-    palettes : List<Palette>,
-    onPaletteClick : () -> Unit,
+    palettes: List<Palette>,
+    onPaletteClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    
+
     LazyColumn(
         contentPadding = PaddingValues(dimensionResource(id = R.dimen.list_padding)),
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.list_padding)),
         modifier = modifier,
     ) {
-        items(palettes){ palette->
+        items(palettes) { palette ->
             PaletteListItem(
                 palette,
                 onPaletteClick = onPaletteClick

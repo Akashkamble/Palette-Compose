@@ -7,17 +7,16 @@ import android.graphics.Color
 import android.graphics.ImageFormat
 import android.graphics.Rect
 import android.graphics.YuvImage
-import android.media.Image
 import android.util.Log
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import java.io.ByteArrayOutputStream
 
-class PixelColorAnalyzer(private val colorCallback :(Int) -> Unit) :
+class PixelColorAnalyzer(private val colorCallback: (Int) -> Unit) :
     ImageAnalysis.Analyzer {
     private var lastAnalyzedTimestamp = 0L
 
-    companion object{
+    companion object {
         const val HALF_SECOND = 500
     }
 
@@ -31,12 +30,12 @@ class PixelColorAnalyzer(private val colorCallback :(Int) -> Unit) :
             val bitmap1 = it
             val bitmapX = bitmap1.width / 2
             val bitmapY = bitmap1.height / 2
-            val pixel = bitmap1.getPixel(bitmapX , bitmapY)
+            val pixel = bitmap1.getPixel(bitmapX, bitmapY)
             val redValue = Color.red(pixel)
             val blueValue = Color.blue(pixel)
             val greenValue = Color.green(pixel)
             val intColor = Color.argb(255, redValue, greenValue, blueValue)
-            Log.d("COLOR2","$intColor")
+            Log.d("COLOR2", "$intColor")
             colorCallback.invoke(intColor)
         }
     }
@@ -59,5 +58,4 @@ class PixelColorAnalyzer(private val colorCallback :(Int) -> Unit) :
         val imageBytes = out.toByteArray()
         return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
     }
-
 }

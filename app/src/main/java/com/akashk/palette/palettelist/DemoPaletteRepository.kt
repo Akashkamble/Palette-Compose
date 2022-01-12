@@ -3,9 +3,9 @@ package com.akashk.palette.palettelist
 import com.akashk.palette.core.Result
 import com.akashk.palette.domain.data.Palette
 import com.akashk.palette.domain.data.PaletteRepository
-import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
+import javax.inject.Inject
 
 class DemoPaletteRepository @Inject constructor() : PaletteRepository {
     private val data = mutableListOf<Palette>()
@@ -32,5 +32,4 @@ class DemoPaletteRepository @Inject constructor() : PaletteRepository {
         data.remove(palette)
         return Result.Success(Unit)
     }
-
 }

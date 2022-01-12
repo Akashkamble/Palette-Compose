@@ -8,9 +8,9 @@ import io.mockk.mockk
 import kotlinx.coroutines.flow.flowOf
 
 class FakePaletteRepository {
-    val mock : PaletteRepository = mockk()
+    val mock: PaletteRepository = mockk()
 
-    fun mockPaletteListResult(result : Result<List<Palette>>){
+    fun mockPaletteListResult(result: Result<List<Palette>>) {
         coEvery {
             mock.fetchAllPalettes()
         } returns flowOf(result)

@@ -22,9 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
-
 
 @Composable
 fun ColorPickerScreen(modifier: Modifier = Modifier) {
@@ -60,7 +58,6 @@ fun ColorPickerScreen(modifier: Modifier = Modifier) {
                 )
                 Spacer(modifier = modifier.height(100.dp))
             }
-
         }
     }
 }
