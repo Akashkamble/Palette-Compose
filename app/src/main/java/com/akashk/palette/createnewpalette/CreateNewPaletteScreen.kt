@@ -8,9 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
-import androidx.compose.material.TextField
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -62,7 +60,7 @@ fun CreateNewPaletteContent(
             labelText = "Enter Palette Name",
             modifier = Modifier.fillMaxWidth(),
             onTextChange = onTextChanged,
-            errorMessage = if(viewState is NewPaletteState.Active) viewState.paletteNameError?.getString() else ""
+            errorMessage = if (viewState is NewPaletteState.Active) viewState.paletteNameError?.getString() else ""
         )
         Spacer(modifier = Modifier.height(60.dp))
         Button(
@@ -79,7 +77,6 @@ fun CreateNewPaletteContent(
         }
     }
 }
-
 
 @Preview(
     name = "Night Mode - Palette Screen",

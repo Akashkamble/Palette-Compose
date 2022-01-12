@@ -12,11 +12,11 @@ fun PaletteListScreen(
     viewModel: PaletteListViewModel = hiltViewModel(),
 ) {
     val viewState = viewModel.viewState.collectAsState()
-    DisposableEffect(key1 = viewState.value){
-        if(viewState.value is PaletteListViewState.AddNewPalette){
+    DisposableEffect(key1 = viewState.value) {
+        if (viewState.value is PaletteListViewState.AddNewPalette) {
             // Navigate to CreateNewPaletteScreen.
         }
-        onDispose {  }
+        onDispose { }
     }
     PaletteScreenContent(
         viewState = viewState.value,
