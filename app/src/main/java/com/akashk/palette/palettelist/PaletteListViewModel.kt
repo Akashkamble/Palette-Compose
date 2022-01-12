@@ -30,10 +30,6 @@ class PaletteListViewModel @Inject constructor(
             .launchIn(viewModelScope)
     }
 
-    fun addNewPalette() {
-        _viewState.value = PaletteListViewState.AddNewPalette
-    }
-
     private fun getPaletteListViewState(result: Result<List<Palette>>): PaletteListViewState {
         return when (result) {
             is Result.Error -> {
