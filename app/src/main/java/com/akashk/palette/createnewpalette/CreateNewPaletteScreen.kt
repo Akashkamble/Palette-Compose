@@ -12,7 +12,6 @@ import androidx.compose.material.Text
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,16 +34,10 @@ fun CreateNewPaletteScreen(
     viewModel: CreateNewPaletteViewModel = hiltViewModel()
 ) {
     val viesState = viewModel.viewState.collectAsState()
-    DisposableEffect(key1 = viesState.value) {
-        if (viesState.value is NewPaletteState.NavigateToColorPicker) {
-            navigator.navigate(ColorPickerScreenDestination)
-        }
-        onDispose { }
-    }
     CreateNewPaletteContent(
         viewState = viesState.value,
         onAddClick = {
-            viewModel.onContinue(viesState.value.paletteName)
+            navigator.navigate(ColorPickerScreenDestination)
         },
         onTextChanged = { text ->
             viewModel.enterPaletteName(text)
