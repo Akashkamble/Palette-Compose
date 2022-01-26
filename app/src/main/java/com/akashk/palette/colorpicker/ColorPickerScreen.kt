@@ -70,7 +70,7 @@ fun ColorPickerScreen(
                 verticalArrangement = Arrangement.Bottom,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                AddedColorList(colorList = list.value.colorList)
+                AddedColorList(colorList = list.value.palettColorList)
                 Button(
                     onClick = {
                         viewModel.pickColor(
@@ -110,7 +110,6 @@ fun AddedColorList(
                     radius = 20.dp,
                     borderStrokeWidth = 2.dp
                 )
-                Spacer(modifier = modifier.height(100.dp))
             }
         }
     }
