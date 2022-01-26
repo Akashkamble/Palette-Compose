@@ -110,6 +110,7 @@ fun AddedColorList(
                     radius = 20.dp,
                     borderStrokeWidth = 2.dp
                 )
+                Spacer(modifier = modifier.height(100.dp))
             }
         }
     }
