@@ -100,7 +100,8 @@ private fun PaletteListItemPreview() {
     val palette = Palette(
         id = 1,
         name = "Palette Name",
-        colorList = listOf("#6750a4", "#4534ff", "#0004fc", "#6750d8")
+        colorList = listOf("#6750a4", "#4534ff", "#0004fc", "#6750d8"),
+        modifiedAt = System.currentTimeMillis()
     )
 
     PaletteTheme {

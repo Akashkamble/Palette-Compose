@@ -1,8 +1,6 @@
-package com.akashk.palette.palettelist
+package com.akashk.palette.domain.data
 
 import com.akashk.palette.core.Result
-import com.akashk.palette.domain.data.Palette
-import com.akashk.palette.domain.data.PaletteRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
@@ -14,7 +12,8 @@ class DemoPaletteRepository @Inject constructor() : PaletteRepository {
             Palette(
                 id = index,
                 name = "Palette $index",
-                colorList = listOf("#6750a4", "#4534ff", "#0004fc", "#6750d8")
+                colorList = listOf("#6750a4", "#4534ff", "#0004fc", "#6750d8"),
+                modifiedAt = System.currentTimeMillis()
             )
         }
         data.addAll(palettes)
@@ -31,5 +30,10 @@ class DemoPaletteRepository @Inject constructor() : PaletteRepository {
     override suspend fun deletePalette(palette: Palette): Result<Unit> {
         data.remove(palette)
         return Result.Success(Unit)
+    }
+
+    override fun fetchPaletteById(id: Int): Flow<Result<Palette>> {
+        val palette = data.first { id == id }
+        return flowOf(Result.Success(palette))
     }
 }

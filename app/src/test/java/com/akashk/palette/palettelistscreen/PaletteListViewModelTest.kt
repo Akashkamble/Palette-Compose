@@ -19,9 +19,10 @@ class PaletteListViewModelTest {
         val palette = Palette(
             id = 1,
             name = "Palette 1",
-            colorList = listOf("#6750a4", "#4534ff", "#0004fc", "#6750d8")
+            colorList = listOf("#6750a4", "#4534ff", "#0004fc", "#6750d8"),
+            modifiedAt = 1L
         )
-
+        val initialState = PaletteListViewState()
         val expectedList = listOf(palette)
         val paletteListResult = Result.Success(expectedList)
 
@@ -29,7 +30,7 @@ class PaletteListViewModelTest {
             .mockAllPalettesResult(paletteListResult)
             .buildViewModel()
             .assertViewState(
-                expectedViewState = PaletteListViewState.Loaded(expectedList)
+                expectedViewState = initialState.copy(isLoading = false, palettes = expectedList)
             )
     }
 
@@ -37,12 +38,15 @@ class PaletteListViewModelTest {
     fun fetchPaletteListWithError() {
         val errorMessage = "Something went wrong"
         val expectedResult = Result.Error(Throwable())
-
+        val initialState = PaletteListViewState()
         testRobot
             .mockAllPalettesResult(expectedResult)
             .buildViewModel()
             .assertViewState(
-                expectedViewState = PaletteListViewState.Error(UIText.StringText(errorMessage))
+                expectedViewState = initialState.copy(
+                    isLoading = false,
+                    errorMessage = UIText.StringText(errorMessage)
+                )
             )
     }
 }

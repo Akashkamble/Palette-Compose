@@ -1,7 +1,7 @@
 package com.akashk.palette.core.di
 
+import com.akashk.palette.domain.data.DemoPaletteRepository
 import com.akashk.palette.domain.data.PaletteRepository
-import com.akashk.palette.palettelist.DemoPaletteRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

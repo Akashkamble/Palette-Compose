@@ -18,7 +18,7 @@ class PaletteListViewModel @Inject constructor(
     paletteRepository: PaletteRepository
 ) : ViewModel() {
     private val _viewState: MutableStateFlow<PaletteListViewState> =
-        MutableStateFlow(PaletteListViewState.Loading)
+        MutableStateFlow(PaletteListViewState())
 
     val viewState: StateFlow<PaletteListViewState> = _viewState
 
@@ -33,14 +33,15 @@ class PaletteListViewModel @Inject constructor(
     private fun getPaletteListViewState(result: Result<List<Palette>>): PaletteListViewState {
         return when (result) {
             is Result.Error -> {
-                PaletteListViewState.Error(
-                    UIText.StringText(
+                viewState.value.copy(
+                    isLoading = false,
+                    errorMessage = UIText.StringText(
                         result.error.localizedMessage ?: "Something went wrong"
                     )
                 )
             }
             is Result.Success -> {
-                PaletteListViewState.Loaded(result.data)
+                viewState.value.copy(isLoading = false, palettes = result.data)
             }
         }
     }
