@@ -27,11 +27,11 @@ class CreateNewPaletteViewModelTest {
     @Test
     fun enteringColorPickerScreenWithValidPaletteName(): Unit = runBlocking {
         val paletteName = "New Palette"
-
+        val initial = NewPaletteState()
+        val validNameState = initial.copy(paletteName = paletteName)
         val expectedViewStates = listOf(
-            NewPaletteState.Initial,
-            NewPaletteState.Active(paletteName = paletteName),
-            NewPaletteState.NavigateToColorPicker(paletteName = paletteName)
+            initial,
+            validNameState
         )
 
         testRobot
@@ -49,13 +49,12 @@ class CreateNewPaletteViewModelTest {
     fun enteringColorPickerScreenWithoutValidPaletteName(): Unit = runBlocking {
         val paletteName = ""
         val expectedErrorMessage = "Enter valid palette name"
+        val initial = NewPaletteState()
+        val stateWithName = initial.copy(paletteName = paletteName)
+        val errorState = stateWithName.copy(paletteName = paletteName, paletteNameError = UIText.StringText(expectedErrorMessage))
         val expectedViewStates = listOf(
-            NewPaletteState.Initial,
-            NewPaletteState.Active(paletteName = paletteName),
-            NewPaletteState.Active(
-                paletteName = paletteName,
-                paletteNameError = UIText.StringText(expectedErrorMessage)
-            )
+            stateWithName,
+            errorState
         )
 
         testRobot

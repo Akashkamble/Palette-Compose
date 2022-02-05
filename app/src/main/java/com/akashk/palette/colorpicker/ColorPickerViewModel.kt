@@ -13,11 +13,12 @@ class ColorPickerViewModel @Inject constructor() : ViewModel() {
     val viewState: StateFlow<ColorPickerState> = _viewState
 
     fun pickColor(color: String) {
-        _viewState.value.palettColorList.add(color)
-        _viewState.value = _viewState.value.copy(palettColorList = _viewState.value.palettColorList)
+        val list = viewState.value.paletteColorList
+        list.add(color)
+        _viewState.value = _viewState.value.copy(paletteColorList = list)
     }
 }
 
 data class ColorPickerState(
-    val palettColorList: MutableList<String> = mutableListOf()
+    val paletteColorList: MutableList<String> = mutableListOf()
 )

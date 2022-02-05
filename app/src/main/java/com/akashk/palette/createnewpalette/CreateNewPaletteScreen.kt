@@ -37,7 +37,9 @@ fun CreateNewPaletteScreen(
     CreateNewPaletteContent(
         viewState = viesState.value,
         onAddClick = {
-            navigator.navigate(ColorPickerScreenDestination)
+            viewModel.onContinue(viesState.value.paletteName) {
+                navigator.navigate(ColorPickerScreenDestination)
+            }
         },
         onTextChanged = { text ->
             viewModel.enterPaletteName(text)
@@ -65,7 +67,7 @@ fun CreateNewPaletteContent(
             labelText = "Enter Palette Name",
             modifier = Modifier.fillMaxWidth(),
             onTextChange = onTextChanged,
-            errorMessage = if (viewState is NewPaletteState.Active) viewState.paletteNameError?.getString() else ""
+            errorMessage = viewState.paletteNameError?.getString()
         )
         Spacer(modifier = Modifier.height(60.dp))
         Button(
@@ -94,7 +96,7 @@ fun CreateNewPaletteContent(
 @Composable
 fun CreateNewPalettePreview() {
     PaletteTheme {
-        val viewState = NewPaletteState.Active(
+        val viewState = NewPaletteState(
             paletteName = "New Palette",
             paletteNameError = null
         )
