@@ -17,7 +17,7 @@ class CreateNewPaletteViewModelRobot {
     }
 
     fun onContinueClick(name: String) = apply {
-        viewModel.onContinue(name)
+        viewModel.onContinue(name, {})
     }
 
     /**
