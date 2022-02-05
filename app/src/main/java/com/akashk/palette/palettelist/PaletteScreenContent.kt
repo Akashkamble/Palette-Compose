@@ -31,17 +31,15 @@ fun PaletteScreenContent(
     modifier: Modifier = Modifier
 ) {
     Box(modifier = modifier.fillMaxSize()) {
-        when (viewState) {
-            is PaletteListViewState.Error -> {
-            }
-            is PaletteListViewState.Loaded -> {
+        when {
+            viewState.palettes.isNotEmpty() -> {
                 LoadedPaletteContent(
                     viewState = viewState,
                     onAddClick = onAddClick,
                     modifier = modifier
                 )
             }
-            PaletteListViewState.Loading -> {
+            viewState.isLoading -> {
                 PaletteCircularProgressIndicator(
                     modifier = Modifier
                         .wrapContentSize()
@@ -56,7 +54,7 @@ fun PaletteScreenContent(
 @ExperimentalMaterial3Api
 @Composable
 private fun LoadedPaletteContent(
-    viewState: PaletteListViewState.Loaded,
+    viewState: PaletteListViewState,
     onAddClick: () -> Unit,
     modifier: Modifier
 ) {
@@ -74,7 +72,7 @@ private fun LoadedPaletteContent(
                 )
             }
         }
-    ) { _ ->
+    ) {
         Column(modifier = modifier.fillMaxSize()) {
             Spacer(modifier = modifier.height(60.dp))
             PaletteList(
@@ -101,11 +99,11 @@ fun PaletteScreenContentPreview() {
         Palette(
             id = index,
             name = "Palette $index",
-            colorList = listOf("#6750a4", "#4534ff", "#0004fc", "#6750d8")
+            colorList = listOf("#6750a4", "#4534ff", "#0004fc", "#6750d8"),
+            modifiedAt = System.currentTimeMillis()
         )
     }
-
-    val viewState = PaletteListViewState.Loaded(palettes)
+    val viewState = PaletteListViewState(isLoading = false, palettes = palettes, errorMessage = null)
     PaletteTheme {
         PaletteScreenContent(
             viewState = viewState,

@@ -4,4 +4,5 @@ data class Palette(
     val id: Int,
     val name: String,
     val colorList: List<String>,
+    val modifiedAt: Long
 )

@@ -51,8 +51,10 @@ class CreateNewPaletteViewModelTest {
         val paletteName = ""
         val initial = NewPaletteState()
         val stateWithName = initial.copy(paletteName = paletteName)
-        val errorState = stateWithName.copy(paletteName = paletteName,
-            paletteNameError = UIText.ResourceText(R.string.err_enter_valid_palette_name))
+        val errorState = stateWithName.copy(
+            paletteName = paletteName,
+            paletteNameError = UIText.ResourceText(R.string.err_enter_valid_palette_name)
+        )
         val expectedViewStates = listOf(
             stateWithName,
             errorState
