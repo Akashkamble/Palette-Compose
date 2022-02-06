@@ -23,9 +23,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.akashk.palette.core.ui.components.PaletteTextField
 import com.akashk.palette.core.ui.getString
 import com.akashk.palette.destinations.ColorPickerScreenDestination
+import com.akashk.palette.domain.data.Palette
 import com.akashk.palette.ui.theme.PaletteTheme
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import java.util.UUID
 
 @Destination
 @Composable
@@ -34,11 +36,21 @@ fun CreateNewPaletteScreen(
     viewModel: CreateNewPaletteViewModel = hiltViewModel()
 ) {
     val viesState = viewModel.viewState.collectAsState()
+    val palette = Palette(
+        id = UUID.randomUUID().toString(),
+        name = "",
+        colorList = mutableListOf(),
+        modifiedAt = System.currentTimeMillis()
+    )
     CreateNewPaletteContent(
         viewState = viesState.value,
         onAddClick = {
             viewModel.onContinue(viesState.value.paletteName) {
-                navigator.navigate(ColorPickerScreenDestination)
+                navigator.navigate(ColorPickerScreenDestination(
+                    palette = palette.copy(name = viesState.value.paletteName)
+                )){
+                    navigator.popBackStack()
+                }
             }
         },
         onTextChanged = { text ->

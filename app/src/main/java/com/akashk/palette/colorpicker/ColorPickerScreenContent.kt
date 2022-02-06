@@ -66,10 +66,11 @@ fun ColorPickerScreenContent(
                 verticalArrangement = Arrangement.Bottom,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                AddedColorList(colorList = viewState.paletteColorList)
+                AddedColorList(colorList = viewState.palette.colorList)
                 Button(
                     onClick = {
-                        pickColor.invoke(String.format("#%06X", 0xFFFFFF and currentColor))
+//                        pickColor.invoke(String.format("#%06X", 0xFFFFFF and currentColor))
+                              pickColor.invoke("#6750a4")
                     },
                     shape = CircleShape
                 ) {

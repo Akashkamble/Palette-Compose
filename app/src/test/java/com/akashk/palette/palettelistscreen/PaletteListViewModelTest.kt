@@ -17,7 +17,7 @@ class PaletteListViewModelTest {
     @Test
     fun fetchPaletteListSuccessfully() {
         val palette = Palette(
-            id = 1,
+            id = "1",
             name = "Palette 1",
             colorList = listOf("#6750a4", "#4534ff", "#0004fc", "#6750d8"),
             modifiedAt = 1L
