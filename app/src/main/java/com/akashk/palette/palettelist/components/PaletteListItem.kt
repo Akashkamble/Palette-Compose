@@ -98,9 +98,9 @@ fun ColorList(
 @Suppress("UnusedPrivateMember")
 private fun PaletteListItemPreview() {
     val palette = Palette(
-        id = 1,
+        id = "1",
         name = "Palette Name",
-        colorList = listOf("#6750a4", "#4534ff", "#0004fc", "#6750d8"),
+        colorList = mutableListOf("#6750a4", "#4534ff", "#0004fc", "#6750d8"),
         modifiedAt = System.currentTimeMillis()
     )
 

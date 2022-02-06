@@ -97,9 +97,9 @@ private fun LoadedPaletteContent(
 fun PaletteScreenContentPreview() {
     val palettes = (1..5).map { index ->
         Palette(
-            id = index,
+            id = index.toString(),
             name = "Palette $index",
-            colorList = listOf("#6750a4", "#4534ff", "#0004fc", "#6750d8"),
+            colorList = mutableListOf("#6750a4", "#4534ff", "#0004fc", "#6750d8"),
             modifiedAt = System.currentTimeMillis()
         )
     }

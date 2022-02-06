@@ -8,11 +8,11 @@ import javax.inject.Inject
 class DemoPaletteRepository @Inject constructor() : PaletteRepository {
     private val data = mutableListOf<Palette>()
     init {
-        val palettes = (1..10).map { index ->
+        val palettes = (1..2).map { index ->
             Palette(
-                id = index,
+                id = index.toString(),
                 name = "Palette $index",
-                colorList = listOf("#6750a4", "#4534ff", "#0004fc", "#6750d8"),
+                colorList = mutableListOf("#6750a4", "#4534ff", "#0004fc", "#6750d8"),
                 modifiedAt = System.currentTimeMillis()
             )
         }
@@ -35,5 +35,10 @@ class DemoPaletteRepository @Inject constructor() : PaletteRepository {
     override fun fetchPaletteById(id: Int): Flow<Result<Palette>> {
         val palette = data.first { id == id }
         return flowOf(Result.Success(palette))
+    }
+
+    override fun updatePalette(palette: Palette): Result<Unit> {
+        data.find { p -> p.id == palette.id }?.copy(colorList = palette.colorList)
+        return Result.Success(Unit)
     }
 }
