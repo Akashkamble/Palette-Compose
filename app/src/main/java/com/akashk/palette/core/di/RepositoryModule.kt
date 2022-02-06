@@ -13,5 +13,6 @@ import javax.inject.Singleton
 abstract class RepositoryModule {
 
     @Binds
+    @Singleton
     abstract fun bindPaletteRepository(repo: DemoPaletteRepository): PaletteRepository
 }

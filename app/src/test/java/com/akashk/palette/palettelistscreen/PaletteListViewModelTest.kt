@@ -19,7 +19,7 @@ class PaletteListViewModelTest {
         val palette = Palette(
             id = "1",
             name = "Palette 1",
-            colorList = listOf("#6750a4", "#4534ff", "#0004fc", "#6750d8"),
+            colorList = mutableListOf("#6750a4", "#4534ff", "#0004fc", "#6750d8"),
             modifiedAt = 1L
         )
         val initialState = PaletteListViewState()

@@ -36,4 +36,9 @@ class DemoPaletteRepository @Inject constructor() : PaletteRepository {
         val palette = data.first { id == id }
         return flowOf(Result.Success(palette))
     }
+
+    override fun updatePalette(palette: Palette): Result<Unit> {
+        data.find { p -> p.id == palette.id }?.copy(colorList = palette.colorList)
+        return Result.Success(Unit)
+    }
 }

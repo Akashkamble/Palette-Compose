@@ -46,9 +46,11 @@ fun CreateNewPaletteScreen(
         viewState = viesState.value,
         onAddClick = {
             viewModel.onContinue(viesState.value.paletteName) {
-                navigator.navigate(ColorPickerScreenDestination(
-                    palette = palette.copy(name = viesState.value.paletteName)
-                )){
+                navigator.navigate(
+                    ColorPickerScreenDestination(
+                        palette = palette.copy(name = viesState.value.paletteName)
+                    )
+                ) {
                     navigator.popBackStack()
                 }
             }
