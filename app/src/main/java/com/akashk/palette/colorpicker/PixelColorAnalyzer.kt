@@ -22,8 +22,6 @@ class PixelColorAnalyzer(private val colorCallback: (Int) -> Unit) :
 
     @SuppressLint("UnsafeOptInUsageError")
     override fun analyze(imageProxy: ImageProxy) {
-        val currentTimestamp = System.currentTimeMillis()
-        // Get the new pixel value every half second
         val bitmap = imageProxy.convertImageProxyToBitmap()
         imageProxy.close()
         bitmap?.let {
