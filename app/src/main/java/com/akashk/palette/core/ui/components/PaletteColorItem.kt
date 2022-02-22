@@ -32,7 +32,7 @@ fun PaletteColorItem(
             .background(color = color.toComposeColor)
             .border(
                 width = borderStrokeWidth,
-                color = if(!isSystemInDarkTheme()) Color(color = 0xFF464141) else Color(color = 0xFF363434),
+                color = if (!isSystemInDarkTheme()) Color(color = 0xFF464141) else Color(color = 0xFF363434),
                 shape = CircleShape
             )
     )

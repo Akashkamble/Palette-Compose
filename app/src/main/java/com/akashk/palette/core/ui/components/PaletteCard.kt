@@ -1,12 +1,8 @@
 package com.akashk.palette.core.ui.components
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.interaction.InteractionSource
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CardElevation
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -14,9 +10,7 @@ import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -28,7 +22,7 @@ fun PaletteCard(
     contentColor: Color = MaterialTheme.colorScheme.contentColorFor(backgroundColor),
     border: BorderStroke? = null,
     content: @Composable () -> Unit
-){
+) {
     Card(
         elevation = CardDefaults.elevatedCardElevation(
             defaultElevation = 10.dp,

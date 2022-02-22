@@ -68,7 +68,7 @@ fun ColorList(
         modifier = Modifier
             .fillMaxWidth()
             .background(
-                color = if(!isSystemInDarkTheme()) Color (color = 0x48D3D3D3) else Color (color = 0x1FD3D3D3),
+                color = if (!isSystemInDarkTheme()) Color(color = 0x48D3D3D3) else Color(color = 0x1FD3D3D3),
                 shape = RoundedCornerShape(size = 14.dp)
             ),
 
