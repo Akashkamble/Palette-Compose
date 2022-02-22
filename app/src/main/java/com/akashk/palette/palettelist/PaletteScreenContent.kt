@@ -15,6 +15,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -32,19 +33,20 @@ fun PaletteScreenContent(
 ) {
     Box(modifier = modifier.fillMaxSize()) {
         when {
+            viewState.isLoading -> {
+                PaletteCircularProgressIndicator(
+                    modifier = Modifier
+                        .wrapContentSize()
+                        .align(Alignment.Center)
+                        .testTag("loading palette list"),
+
+                )
+            }
             viewState.palettes.isNotEmpty() -> {
                 LoadedPaletteContent(
                     viewState = viewState,
                     onAddClick = onAddClick,
                     modifier = modifier
-                )
-            }
-            viewState.isLoading -> {
-                PaletteCircularProgressIndicator(
-                    modifier = Modifier
-                        .wrapContentSize()
-                        .align(Alignment.Center),
-
                 )
             }
         }
