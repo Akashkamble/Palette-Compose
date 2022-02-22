@@ -3,6 +3,7 @@ package com.akashk.palette.core.ui.components
 import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -20,8 +21,8 @@ import com.akashk.palette.utils.toComposeColor
 fun PaletteColorItem(
     color: String,
     radius: Dp,
-    borderStrokeWidth: Dp = 4.dp,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    borderStrokeWidth: Dp = 4.dp
 ) {
     val shape = CircleShape
     Box(
@@ -31,7 +32,7 @@ fun PaletteColorItem(
             .background(color = color.toComposeColor)
             .border(
                 width = borderStrokeWidth,
-                color = Color(0xFF464141),
+                color = if (!isSystemInDarkTheme()) Color(color = 0xFF464141) else Color(color = 0xFF363434),
                 shape = CircleShape
             )
     )

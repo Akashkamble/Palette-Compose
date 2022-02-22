@@ -1,6 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.kotlinVersion = "1.5.31"
+    ext.kotlinVersion = "1.6.10"
 
     // https://github.com/JLLeitschuh/ktlint-gradle/releases
     ext.ktlintPluginVersion = "10.0.0"
@@ -9,7 +9,7 @@ buildscript {
     ext.versionsPluginVersion = "0.29.0"
 
     // https://developer.android.com/jetpack/androidx/releases/hilt
-    ext.hiltVersion = "2.40"
+    ext.hiltVersion = "2.40.5"
 
     repositories {
         google()
@@ -20,7 +20,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.android.tools.build:gradle:7.0.3"
+        classpath "com.android.tools.build:gradle:7.0.4"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "org.jlleitschuh.gradle:ktlint-gradle:$ktlintPluginVersion"
         classpath "com.github.ben-manes:gradle-versions-plugin:$versionsPluginVersion"

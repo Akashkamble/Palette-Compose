@@ -3,6 +3,7 @@ package com.akashk.palette.palettelist
 import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,6 +32,7 @@ import com.akashk.palette.domain.data.Palette
 import com.akashk.palette.ui.theme.PaletteTheme
 
 @Composable
+@OptIn(ExperimentalMaterial3Api::class)
 fun PaletteListItem(
     palette: Palette,
     onPaletteClick: () -> Unit
@@ -65,8 +68,8 @@ fun ColorList(
         modifier = Modifier
             .fillMaxWidth()
             .background(
-                color = Color(color = 0x48c4c4c4),
-                shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp, bottomStart = 14.dp, bottomEnd = 14.dp)
+                color = if (!isSystemInDarkTheme()) Color(color = 0x48D3D3D3) else Color(color = 0x1FD3D3D3),
+                shape = RoundedCornerShape(size = 14.dp)
             ),
 
     ) {
