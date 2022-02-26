@@ -35,13 +35,14 @@ import com.akashk.palette.ui.theme.PaletteTheme
 @OptIn(ExperimentalMaterial3Api::class)
 fun PaletteListItem(
     palette: Palette,
-    onPaletteClick: () -> Unit
+    onPaletteClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     PaletteCard(
         shape = RoundedCornerShape(size = 14.dp)
     ) {
         Column(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxWidth()
                 .clickable(
                     onClick = onPaletteClick

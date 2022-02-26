@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.akashk.palette.R
@@ -28,7 +29,9 @@ fun PaletteList(
         items(palettes) { palette ->
             PaletteListItem(
                 palette,
-                onPaletteClick = onPaletteClick
+                onPaletteClick = onPaletteClick,
+                modifier = Modifier
+                    .testTag("Palette_${palette.id}")
             )
         }
     }

@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -79,7 +80,7 @@ fun CreateNewPaletteContent(
         PaletteTextField(
             text = viewState.paletteName,
             labelText = "Enter Palette Name",
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().testTag("palette_name_text_field"),
             onTextChange = onTextChanged,
             errorMessage = viewState.paletteNameError?.getString()
         )

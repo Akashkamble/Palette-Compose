@@ -27,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -49,6 +50,7 @@ fun ColorPickerScreenContent(
                 analyzer = PixelColorAnalyzer {
                     currentColor = it
                 },
+                modifier = modifier.testTag("camerax_tag")
             )
             Box(
                 modifier = modifier
@@ -60,6 +62,7 @@ fun ColorPickerScreenContent(
                         color = Color(0xFF464141),
                         shape = CircleShape
                     )
+                    .testTag("current_color_tag")
             )
             Column(
                 modifier = modifier.fillMaxSize(),
@@ -71,7 +74,8 @@ fun ColorPickerScreenContent(
                     onClick = {
                         pickColor.invoke(String.format("#%06X", 0xFFFFFF and currentColor))
                     },
-                    shape = CircleShape
+                    shape = CircleShape,
+                    modifier = modifier.testTag("pick_color_tag")
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_add_24),
@@ -102,7 +106,8 @@ fun AddedColorList(
                 PaletteColorItem(
                     color = color,
                     radius = 20.dp,
-                    borderStrokeWidth = 2.dp
+                    borderStrokeWidth = 2.dp,
+                    modifier = modifier.testTag("color_tag_$color")
                 )
             }
         }

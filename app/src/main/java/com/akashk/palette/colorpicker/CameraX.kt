@@ -21,6 +21,7 @@ import java.util.concurrent.Executor
 @Composable
 fun CameraXComposable(
     analyzer: ImageAnalysis.Analyzer,
+    modifier: Modifier = Modifier
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
     val context = LocalContext.current
@@ -42,7 +43,7 @@ fun CameraXComposable(
             }, executor)
             preview
         },
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
     )
 }
 
