@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ColorPickerViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    val paletteRepository: PaletteRepository,
+    private val paletteRepository: PaletteRepository,
 ) : ViewModel() {
 
     private val _viewState: MutableStateFlow<ColorPickerState> =
@@ -44,9 +44,8 @@ class ColorPickerViewModel @Inject constructor(
             _viewState.value = viewState.value.copy(paletteColorList = list)
             viewModelScope.launch {
                 paletteRepository.updatePalette(
-                    palette = palette.copy(
+                    newPalette = palette.copy(
                         colorList = list,
-                        modifiedAt = System.currentTimeMillis()
                     )
                 )
             }

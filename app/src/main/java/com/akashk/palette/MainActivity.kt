@@ -10,6 +10,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.core.view.WindowCompat
 import com.akashk.palette.ui.theme.PaletteTheme
+import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ramcosta.composedestinations.DestinationsNavHost
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,10 +23,12 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
             PaletteTheme {
-                ConfigureSystemBars()
-                DestinationsNavHost(
-                    navGraph = NavGraphs.root
-                )
+                ProvideWindowInsets {
+                    ConfigureSystemBars()
+                    DestinationsNavHost(
+                        navGraph = NavGraphs.root
+                    )
+                }
             }
         }
     }
