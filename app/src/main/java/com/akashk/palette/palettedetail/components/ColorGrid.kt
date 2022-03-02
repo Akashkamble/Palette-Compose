@@ -22,13 +22,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.akashk.palette.palettedetail.PaletteDetailsState
 import com.akashk.palette.utils.toComposeColor
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ColorGrid(
-    viewState: PaletteDetailsState,
+    colorList: List<String>,
+    selectedIndex: Int,
     modifier: Modifier,
     onSelectedColorIndex: (index: Int) -> Unit
 ) {
@@ -38,7 +38,7 @@ fun ColorGrid(
         horizontalArrangement = Arrangement.spacedBy(10.dp),
         modifier = modifier.fillMaxHeight(0.7f)
     ) {
-        itemsIndexed(viewState.palette.colorList) { index, color ->
+        itemsIndexed(colorList) { index, color ->
             Box(
                 modifier = modifier
                     .size(50.dp)
@@ -53,7 +53,7 @@ fun ColorGrid(
                         onSelectedColorIndex.invoke(index)
                     }
             ) {
-                if (viewState.selectedIndex == index) {
+                if (selectedIndex == index) {
                     Box(
                         modifier = Modifier
                             .fillMaxSize()

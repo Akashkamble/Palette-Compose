@@ -1,6 +1,5 @@
 package com.akashk.palette.domain.data
 
-import android.util.Log
 import com.akashk.palette.core.Result
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
@@ -45,11 +44,18 @@ class DemoPaletteRepository @Inject constructor() : PaletteRepository {
     }
 
     override fun updatePalette(newPalette: Palette): Result<Unit> {
-        Log.d("Test Repo", newPalette.toString())
         val palette = data.find { p -> p.id == newPalette.id }
         val index = data.indexOf(palette)
         data.removeAt(index = index)
         data.add(index, newPalette)
         return Result.Success(Unit)
+    }
+
+    override fun fetchPaletteById(id: String): Flow<Result<Palette>> {
+        val palette = data.find { p -> p.id == id }
+        if (palette != null) {
+            return flowOf(Result.Success(data = palette))
+        }
+        return flowOf(Result.Error(Throwable(message = "Palette not found")))
     }
 }

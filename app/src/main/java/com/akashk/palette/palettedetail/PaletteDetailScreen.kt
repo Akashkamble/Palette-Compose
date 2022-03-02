@@ -48,7 +48,7 @@ fun PaletteDetailScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PaletteDetailsContent(
-    viewState: PaletteDetailsState,
+    viewState: PaletteDetailState,
     modifier: Modifier = Modifier,
     onDeletePalette: () -> Unit,
     onSelectedColorIndex: (index: Int) -> Unit,
@@ -56,14 +56,16 @@ fun PaletteDetailsContent(
     onDeleteColor: () -> Unit,
     onRenamePalette: () -> Unit
 ) {
-    val selectedIndex = viewState.selectedIndex
+    /*LaunchedEffect(key1 = viewState){
+        Log.d("Test", viewState.toString())
+    }*/
     Scaffold(
         modifier = modifier
             .navigationBarsPadding()
             .statusBarsPadding(),
         topBar = {
             PaletteDetailsToolBar(
-                name = viewState.palette.name,
+                name = viewState.paletteName,
                 modifier = modifier,
                 onDeletePalette = onDeletePalette
             )
@@ -84,11 +86,12 @@ fun PaletteDetailsContent(
         ) {
             ColorBox(
                 modifier = modifier,
-                color = viewState.palette.colorList[selectedIndex]
+                color = viewState.paletteColorList[viewState.selectedIndex]
             )
             Spacer(modifier = Modifier.height(20.dp))
             ColorGrid(
-                viewState = viewState,
+                colorList = viewState.paletteColorList,
+                selectedIndex = viewState.selectedIndex,
                 modifier = modifier,
             ) { selectedIndex ->
                 onSelectedColorIndex.invoke(selectedIndex)
