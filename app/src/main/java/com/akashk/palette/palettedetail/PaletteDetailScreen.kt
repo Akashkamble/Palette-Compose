@@ -12,6 +12,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.akashk.palette.core.ui.components.PaletteCircularProgressIndicator
 import com.akashk.palette.domain.data.Palette
 import com.akashk.palette.palettedetail.components.ColorBox
 import com.akashk.palette.palettedetail.components.ColorGrid
@@ -36,7 +37,8 @@ fun PaletteDetailScreen(
         onSelectedColorIndex = { selectedIndex ->
             viewModel.updateSelectedIndex(selectedIndex)
         },
-        onAddColor = {},
+        onAddColor = { _ ->
+        },
         onDeleteColor = {
             viewModel.deleteSelectedColor()
         },
@@ -52,50 +54,59 @@ fun PaletteDetailsContent(
     modifier: Modifier = Modifier,
     onDeletePalette: () -> Unit,
     onSelectedColorIndex: (index: Int) -> Unit,
-    onAddColor: () -> Unit,
+    onAddColor: (palette: Palette) -> Unit,
     onDeleteColor: () -> Unit,
     onRenamePalette: () -> Unit
 ) {
-    /*LaunchedEffect(key1 = viewState){
-        Log.d("Test", viewState.toString())
-    }*/
-    Scaffold(
-        modifier = modifier
-            .navigationBarsPadding()
-            .statusBarsPadding(),
-        topBar = {
-            PaletteDetailsToolBar(
-                name = viewState.paletteName,
-                modifier = modifier,
-                onDeletePalette = onDeletePalette
-            )
-        },
-        bottomBar = {
-            PaletteDetailsBottomNavigationBar(
-                modifier = modifier,
-                onDeleteColor = onDeleteColor,
-                onAddColors = onAddColor,
-                onRenamePalette = onRenamePalette
-            )
-        },
-    ) {
-        Column(
-            modifier = modifier
-                .fillMaxSize()
-                .padding(16.dp)
-        ) {
-            ColorBox(
-                modifier = modifier,
-                color = viewState.paletteColorList[viewState.selectedIndex]
-            )
-            Spacer(modifier = Modifier.height(20.dp))
-            ColorGrid(
-                colorList = viewState.paletteColorList,
-                selectedIndex = viewState.selectedIndex,
-                modifier = modifier,
-            ) { selectedIndex ->
-                onSelectedColorIndex.invoke(selectedIndex)
+    when (viewState) {
+        is PaletteDetailState.CurrentPalette -> {
+            Scaffold(
+                modifier = modifier
+                    .navigationBarsPadding()
+                    .statusBarsPadding(),
+                topBar = {
+                    PaletteDetailsToolBar(
+                        name = viewState.paletteName,
+                        modifier = modifier,
+                        onDeletePalette = onDeletePalette
+                    )
+                },
+                bottomBar = {
+                    PaletteDetailsBottomNavigationBar(
+                        modifier = modifier,
+                        onDeleteColor = onDeleteColor,
+                        onAddColors = { onAddColor(viewState.palette) },
+                        onRenamePalette = onRenamePalette
+                    )
+                },
+            ) {
+                val selectedColor = viewState.palette.colorList[viewState.selectedIndex]
+                Column(
+                    modifier = modifier
+                        .fillMaxSize()
+                        .padding(16.dp)
+                ) {
+                    ColorBox(
+                        modifier = modifier,
+                        color = selectedColor
+                    )
+                    Spacer(modifier = Modifier.height(20.dp))
+                    ColorGrid(
+                        colorList = viewState.palette.colorList,
+                        selectedIndex = viewState.selectedIndex,
+                        modifier = modifier,
+                    ) { selectedIndex ->
+                        onSelectedColorIndex.invoke(selectedIndex)
+                    }
+                }
             }
         }
+        is PaletteDetailState.ErrorState -> {
+
+        }
+        is PaletteDetailState.IsLoading -> {
+            PaletteCircularProgressIndicator()
+        }
     }
+
 }
