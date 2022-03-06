@@ -1,19 +1,15 @@
 package com.akashk.palette.palettedetail
 
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.akashk.palette.destinations.PaletteDetailScreenDestination
 import com.akashk.palette.domain.data.Palette
 import com.akashk.palette.domain.data.PaletteRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
-import com.akashk.palette.core.Result
-import com.akashk.palette.core.ui.UIText
+import javax.inject.Inject
 @HiltViewModel
 class PaletteDetailsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
@@ -30,10 +26,10 @@ class PaletteDetailsViewModel @Inject constructor(
         )
     val viewState: StateFlow<PaletteDetailState> = _viewState
 
-    fun fetchPaletteById(id : String) : Palette {
-      val palette = paletteRepository.fetchPaletteById(id)
-      _viewState.value =  PaletteDetailState.CurrentPalette(palette = palette)
-      return palette
+    fun fetchPaletteById(id: String): Palette {
+        val palette = paletteRepository.fetchPaletteById(id)
+        _viewState.value = PaletteDetailState.CurrentPalette(palette = palette)
+        return palette
     }
 
     fun updateSelectedIndex(index: Int) {
@@ -62,4 +58,3 @@ class PaletteDetailsViewModel @Inject constructor(
         paletteRepository.updatePalette(newPalette = newPalette)
     }
 }
-

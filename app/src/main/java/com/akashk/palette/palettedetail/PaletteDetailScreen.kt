@@ -33,7 +33,7 @@ fun PaletteDetailScreen(
     viewModel: PaletteDetailsViewModel = hiltViewModel(),
 ) {
     val viewState = viewModel.viewState.collectAsState()
-    LaunchedEffect(key1 = Unit){
+    LaunchedEffect(key1 = Unit) {
         viewModel.fetchPaletteById(palette.id)
     }
     PaletteDetailsContent(
@@ -108,11 +108,9 @@ fun PaletteDetailsContent(
             }
         }
         is PaletteDetailState.ErrorState -> {
-
         }
         is PaletteDetailState.IsLoading -> {
             PaletteCircularProgressIndicator()
         }
     }
-
 }

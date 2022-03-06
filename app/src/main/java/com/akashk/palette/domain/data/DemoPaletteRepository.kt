@@ -1,9 +1,9 @@
 package com.akashk.palette.domain.data
 
 import com.akashk.palette.core.Result
-import java.lang.IllegalArgumentException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
+import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
 class DemoPaletteRepository @Inject constructor() : PaletteRepository {

@@ -30,10 +30,10 @@ class ColorPickerViewModel @Inject constructor(
         val list = (viewState.value as ColorPickerState.CurrentPalette).list
         if (list.isEmpty()) {
             _viewState.value = ColorPickerState.CurrentPalette(list = newList(list, color))
-             val newPalette = palette.copy(
-                 colorList = (viewState.value as ColorPickerState.CurrentPalette).list.toMutableList(),
-                 modifiedAt = System.currentTimeMillis()
-             )
+            val newPalette = palette.copy(
+                colorList = (viewState.value as ColorPickerState.CurrentPalette).list.toMutableList(),
+                modifiedAt = System.currentTimeMillis()
+            )
             viewModelScope.launch {
                 paletteRepository.addPalette(
                     palette = newPalette
@@ -53,14 +53,14 @@ class ColorPickerViewModel @Inject constructor(
         }
     }
 
-    private fun newList(list: List<String>, color: String) : List<String> {
-        val newList : MutableList<String> = mutableListOf()
+    private fun newList(list: List<String>, color: String): List<String> {
+        val newList: MutableList<String> = mutableListOf()
         newList.addAll(0, list)
         newList.add(color)
         return newList
     }
 }
 
-sealed class ColorPickerState{
-  data class CurrentPalette(val list: List<String> = mutableListOf()) : ColorPickerState()
+sealed class ColorPickerState {
+    data class CurrentPalette(val list: List<String> = mutableListOf()) : ColorPickerState()
 }
