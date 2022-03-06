@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.akashk.palette.utils.toComposeColor
@@ -28,7 +29,8 @@ fun ColorBox(modifier: Modifier, color: String) {
             .background(
                 color = Color(0x33E0D9D9)
             )
-            .padding(start = 20.dp, end = 20.dp, top = 20.dp),
+            .padding(start = 20.dp, end = 20.dp, top = 20.dp)
+            .testTag("color_box_tag"),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Box(

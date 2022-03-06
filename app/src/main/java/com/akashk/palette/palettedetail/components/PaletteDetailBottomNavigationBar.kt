@@ -13,6 +13,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -45,14 +46,15 @@ fun PaletteDetailsBottomNavigationBar(
                         text = "Delete Color",
                         color = MaterialTheme.colorScheme.onPrimary
                     )
-                }
+                },
+                modifier = modifier.testTag("delete_color_tag")
             )
             BottomNavigationItem(
                 onClick = onAddColors,
                 icon = {
                     Icon(
                         imageVector = Icons.Outlined.Add,
-                        contentDescription = "Delete selected color",
+                        contentDescription = "Add new colors in palette",
                         tint = MaterialTheme.colorScheme.onPrimary
                     )
                 },
@@ -62,7 +64,8 @@ fun PaletteDetailsBottomNavigationBar(
                         text = "Add Colors",
                         color = MaterialTheme.colorScheme.onPrimary
                     )
-                }
+                },
+                modifier = modifier.testTag("add_color_tag")
             )
             BottomNavigationItem(
                 onClick = onRenamePalette,
@@ -79,7 +82,8 @@ fun PaletteDetailsBottomNavigationBar(
                         text = "Rename Palette",
                         color = MaterialTheme.colorScheme.onPrimary
                     )
-                }
+                },
+                modifier = modifier.testTag("rename_palette_tag")
             )
         }
     }
