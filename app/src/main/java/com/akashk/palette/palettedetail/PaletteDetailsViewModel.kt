@@ -1,5 +1,6 @@
 package com.akashk.palette.palettedetail
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.akashk.palette.destinations.PaletteDetailScreenDestination
@@ -9,8 +10,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
-
+import com.akashk.palette.core.Result
+import com.akashk.palette.core.ui.UIText
 @HiltViewModel
 class PaletteDetailsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
@@ -27,32 +30,11 @@ class PaletteDetailsViewModel @Inject constructor(
         )
     val viewState: StateFlow<PaletteDetailState> = _viewState
 
-    /*private fun fetchPaletteById(id: String) {
-        paletteRepository.fetchPaletteById(id)
-            .onEach { result ->
-                _viewState.value = getViewStateForDetails(result)
-            }
-            .launchIn(viewModelScope)
+    fun fetchPaletteById(id : String) : Palette {
+      val palette = paletteRepository.fetchPaletteById(id)
+      _viewState.value =  PaletteDetailState.CurrentPalette(palette = palette)
+      return palette
     }
-
-    private fun getViewStateForDetails(result: Result<Palette>): PaletteDetailState {
-        return when (result) {
-            is Result.Success -> {
-                val data = result.data
-                viewState.value.copy(
-                    isLoading = false,
-                    paletteColorList = data.colorList,
-                    paletteName = data.name
-                )
-            }
-            is Result.Error -> {
-                viewState.value.copy(
-                    isLoading = false,
-                    errorMessage = UIText.StringText(result.error.message ?: "Palette not found")
-                )
-            }
-        }
-    }*/
 
     fun updateSelectedIndex(index: Int) {
         val palette = (viewState.value as PaletteDetailState.CurrentPalette).palette
@@ -60,7 +42,6 @@ class PaletteDetailsViewModel @Inject constructor(
             PaletteDetailState.CurrentPalette(palette = palette, selectedIndex = index)
     }
 
-    // TODO : This function is changing state but in UI it is not reflecting.
     fun deleteSelectedColor() {
         var selectedIndex = (viewState.value as PaletteDetailState.CurrentPalette).selectedIndex
         val currentPalette = (viewState.value as PaletteDetailState.CurrentPalette).palette
@@ -81,3 +62,4 @@ class PaletteDetailsViewModel @Inject constructor(
         paletteRepository.updatePalette(newPalette = newPalette)
     }
 }
+

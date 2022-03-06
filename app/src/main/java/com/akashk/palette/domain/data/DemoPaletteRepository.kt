@@ -1,6 +1,7 @@
 package com.akashk.palette.domain.data
 
 import com.akashk.palette.core.Result
+import java.lang.IllegalArgumentException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
@@ -51,11 +52,11 @@ class DemoPaletteRepository @Inject constructor() : PaletteRepository {
         return Result.Success(Unit)
     }
 
-    override fun fetchPaletteById(id: String): Flow<Result<Palette>> {
+    override fun fetchPaletteById(id: String): Palette {
         val palette = data.find { p -> p.id == id }
         if (palette != null) {
-            return flowOf(Result.Success(data = palette))
+            return palette
         }
-        return flowOf(Result.Error(Throwable(message = "Palette not found")))
+        throw IllegalArgumentException("palette id is not valid")
     }
 }
