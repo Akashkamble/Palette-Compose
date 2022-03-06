@@ -18,41 +18,49 @@ class ColorPickerViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _viewState: MutableStateFlow<ColorPickerState> =
-        MutableStateFlow(ColorPickerState())
+        MutableStateFlow(ColorPickerState.CurrentPalette())
     val viewState: StateFlow<ColorPickerState> = _viewState
     private var palette = ColorPickerScreenDestination.argsFrom(savedStateHandle).palette
 
     init {
-        _viewState.value = viewState.value.copy(paletteColorList = palette.colorList)
+        _viewState.value = ColorPickerState.CurrentPalette(list = palette.colorList)
     }
 
     fun pickColor(color: String) {
-        val list = viewState.value.paletteColorList
+        val list = (viewState.value as ColorPickerState.CurrentPalette).list
         if (list.isEmpty()) {
-            list.add(color)
-            _viewState.value = viewState.value.copy(paletteColorList = list)
+            _viewState.value = ColorPickerState.CurrentPalette(list = newList(list, color))
+             val newPalette = palette.copy(
+                 colorList = (viewState.value as ColorPickerState.CurrentPalette).list.toMutableList(),
+                 modifiedAt = System.currentTimeMillis()
+             )
             viewModelScope.launch {
                 paletteRepository.addPalette(
-                    palette = palette.copy(
-                        colorList = list,
-                        modifiedAt = System.currentTimeMillis()
-                    )
+                    palette = newPalette
                 )
             }
         } else {
-            list.add(color)
-            _viewState.value = viewState.value.copy(paletteColorList = list)
+            _viewState.value = ColorPickerState.CurrentPalette(list = newList(list, color))
+            val newPalette = palette.copy(
+                colorList = (viewState.value as ColorPickerState.CurrentPalette).list.toMutableList(),
+                modifiedAt = System.currentTimeMillis()
+            )
             viewModelScope.launch {
                 paletteRepository.updatePalette(
-                    newPalette = palette.copy(
-                        colorList = list,
-                    )
+                    newPalette = newPalette
                 )
             }
         }
     }
+
+    private fun newList(list: List<String>, color: String) : List<String> {
+        val newList : MutableList<String> = mutableListOf()
+        newList.addAll(0, list)
+        newList.add(color)
+        return newList
+    }
 }
 
-data class ColorPickerState(
-    val paletteColorList: MutableList<String> = mutableListOf()
-)
+sealed class ColorPickerState{
+  data class CurrentPalette(val list: List<String> = mutableListOf()) : ColorPickerState()
+}

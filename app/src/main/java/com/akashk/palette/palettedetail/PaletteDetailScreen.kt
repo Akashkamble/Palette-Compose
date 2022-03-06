@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.akashk.palette.core.ui.components.PaletteCircularProgressIndicator
+import com.akashk.palette.destinations.ColorPickerScreenDestination
 import com.akashk.palette.domain.data.Palette
 import com.akashk.palette.palettedetail.components.ColorBox
 import com.akashk.palette.palettedetail.components.ColorGrid
@@ -37,7 +38,8 @@ fun PaletteDetailScreen(
         onSelectedColorIndex = { selectedIndex ->
             viewModel.updateSelectedIndex(selectedIndex)
         },
-        onAddColor = { _ ->
+        onAddColor = { palette ->
+            navigator.navigate(ColorPickerScreenDestination(palette = palette))
         },
         onDeleteColor = {
             viewModel.deleteSelectedColor()
