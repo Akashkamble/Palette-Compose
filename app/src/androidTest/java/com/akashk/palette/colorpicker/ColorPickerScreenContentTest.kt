@@ -18,7 +18,7 @@ class ColorPickerScreenContentTest {
     @OptIn(ExperimentalMaterial3Api::class)
     @Test
     fun checkIfEverythingIsRenderedProperly() {
-        val viewState = ColorPickerState()
+        val viewState = ColorPickerState.CurrentPalette()
 
         composeTestRule.setContent {
             ColorPickerScreenContent(viewState = viewState, pickColor = {})
@@ -38,7 +38,7 @@ class ColorPickerScreenContentTest {
     @OptIn(ExperimentalMaterial3Api::class)
     @Test
     fun checkIfPickColorInvoked() {
-        val viewState = ColorPickerState()
+        val viewState = ColorPickerState.CurrentPalette()
         var isInvoked = false
         composeTestRule.setContent {
             ColorPickerScreenContent(viewState = viewState, pickColor = {
@@ -56,8 +56,8 @@ class ColorPickerScreenContentTest {
     @Test
     fun checkIfColorListItemsVisible() {
         val color = "#6750a4"
-        val viewState = ColorPickerState(
-            paletteColorList = mutableListOf(color)
+        val viewState = ColorPickerState.CurrentPalette(
+            list = mutableListOf(color)
         )
         composeTestRule.setContent {
             ColorPickerScreenContent(viewState = viewState, pickColor = {})

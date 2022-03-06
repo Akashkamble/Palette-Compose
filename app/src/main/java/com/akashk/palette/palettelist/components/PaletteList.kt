@@ -17,7 +17,7 @@ import com.akashk.palette.ui.theme.PaletteTheme
 @Composable
 fun PaletteList(
     palettes: List<Palette>,
-    onPaletteClick: () -> Unit,
+    onPaletteClick: (palette: Palette) -> Unit,
     modifier: Modifier = Modifier
 ) {
 

@@ -3,9 +3,7 @@ package com.akashk.palette.palettelist
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
@@ -18,20 +16,26 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.akashk.palette.R
 import com.akashk.palette.core.ui.components.PaletteCircularProgressIndicator
 import com.akashk.palette.domain.data.Palette
 import com.akashk.palette.ui.theme.PaletteTheme
+import com.google.accompanist.insets.navigationBarsPadding
+import com.google.accompanist.insets.statusBarsPadding
 
 @ExperimentalMaterial3Api
 @Composable
 fun PaletteScreenContent(
     viewState: PaletteListViewState,
     onAddClick: () -> Unit,
+    onPaletteClick: (palette: Palette) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Box(modifier = modifier.fillMaxSize()) {
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .navigationBarsPadding()
+    ) {
         when {
             viewState.isLoading -> {
                 PaletteCircularProgressIndicator(
@@ -46,6 +50,7 @@ fun PaletteScreenContent(
                 LoadedPaletteContent(
                     viewState = viewState,
                     onAddClick = onAddClick,
+                    onPaletteClick = onPaletteClick,
                     modifier = modifier
                 )
             }
@@ -58,6 +63,7 @@ fun PaletteScreenContent(
 private fun LoadedPaletteContent(
     viewState: PaletteListViewState,
     onAddClick: () -> Unit,
+    onPaletteClick: (palette: Palette) -> Unit,
     modifier: Modifier
 ) {
     Scaffold(
@@ -75,12 +81,14 @@ private fun LoadedPaletteContent(
             }
         }
     ) {
-        Column(modifier = modifier.fillMaxSize()) {
-            Spacer(modifier = modifier.height(60.dp))
+        Column(
+            modifier = modifier
+                .fillMaxSize()
+                .statusBarsPadding()
+        ) {
             PaletteList(
                 palettes = viewState.palettes,
-                onPaletteClick = {
-                },
+                onPaletteClick = onPaletteClick
             )
         }
     }
@@ -105,11 +113,13 @@ fun PaletteScreenContentPreview() {
             modifiedAt = System.currentTimeMillis()
         )
     }
-    val viewState = PaletteListViewState(isLoading = false, palettes = palettes, errorMessage = null)
+    val viewState =
+        PaletteListViewState(isLoading = false, palettes = palettes, errorMessage = null)
     PaletteTheme {
         PaletteScreenContent(
             viewState = viewState,
-            onAddClick = {}
+            onAddClick = {},
+            onPaletteClick = {}
         )
     }
 }

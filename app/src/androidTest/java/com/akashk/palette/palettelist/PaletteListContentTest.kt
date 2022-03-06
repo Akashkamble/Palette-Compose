@@ -33,7 +33,8 @@ class PaletteListContentTest {
                     palettes = listOf(palette),
                     errorMessage = null
                 ),
-                onAddClick = { }
+                onAddClick = { },
+                onPaletteClick = {}
             )
         }
 
@@ -52,7 +53,8 @@ class PaletteListContentTest {
                     palettes = emptyList(),
                     errorMessage = null
                 ),
-                onAddClick = { }
+                onAddClick = { },
+                onPaletteClick = {}
             )
         }
 
@@ -71,7 +73,8 @@ class PaletteListContentTest {
                     palettes = listOf(palette),
                     errorMessage = null
                 ),
-                onAddClick = { }
+                onAddClick = { },
+                onPaletteClick = {}
             )
         }
 
@@ -93,12 +96,40 @@ class PaletteListContentTest {
                 ),
                 onAddClick = {
                     isInvoked = true
-                }
+                },
+                onPaletteClick = {}
             )
         }
 
         composeTestRule
             .onNodeWithContentDescription("Add new palette")
+            .performClick()
+
+        assertThat(isInvoked).isTrue()
+    }
+
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Test
+    fun checkIfonPaletteClickIsInvoked() {
+        var isInvoked = false
+        composeTestRule.setContent {
+            PaletteScreenContent(
+                viewState = PaletteListViewState(
+                    isLoading = false,
+                    palettes = listOf(palette),
+                    errorMessage = null
+                ),
+                onAddClick = {
+                    isInvoked = true
+                },
+                onPaletteClick = {
+                    isInvoked = true
+                }
+            )
+        }
+
+        composeTestRule
+            .onNodeWithTag("Palette_${palette.id}")
             .performClick()
 
         assertThat(isInvoked).isTrue()

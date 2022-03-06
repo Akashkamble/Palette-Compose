@@ -22,10 +22,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.akashk.palette.R
 import com.akashk.palette.core.ui.components.PaletteCard
 import com.akashk.palette.core.ui.components.PaletteColorItem
 import com.akashk.palette.domain.data.Palette
@@ -35,7 +33,7 @@ import com.akashk.palette.ui.theme.PaletteTheme
 @OptIn(ExperimentalMaterial3Api::class)
 fun PaletteListItem(
     palette: Palette,
-    onPaletteClick: () -> Unit,
+    onPaletteClick: (palette: Palette) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     PaletteCard(
@@ -45,7 +43,9 @@ fun PaletteListItem(
             modifier = modifier
                 .fillMaxWidth()
                 .clickable(
-                    onClick = onPaletteClick
+                    onClick = {
+                        onPaletteClick.invoke(palette)
+                    }
                 )
         ) {
             Spacer(modifier = Modifier.height(10.dp))
@@ -76,7 +76,7 @@ fun ColorList(
     ) {
         LazyRow(
             contentPadding = PaddingValues(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.list_padding)),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
             modifier = modifier,
         ) {
             items(colorList) { color ->

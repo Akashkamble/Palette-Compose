@@ -69,7 +69,7 @@ fun ColorPickerScreenContent(
                 verticalArrangement = Arrangement.Bottom,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                AddedColorList(colorList = viewState.paletteColorList)
+                AddedColorList(colorList = (viewState as ColorPickerState.CurrentPalette).list)
                 Button(
                     onClick = {
                         pickColor.invoke(String.format("#%06X", 0xFFFFFF and currentColor))
