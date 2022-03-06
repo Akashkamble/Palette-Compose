@@ -1,23 +1,22 @@
 # Palette App
 
-* Project packages.
-* AndroidManifest file.
-* Strings.xml (for app_name string). 
+The app that let you capture the colors of your surrounding.
+- You can capture the colors and create palettes.
 
-## What's Included
+## App Design
+You can check the app design [here](https://www.figma.com/file/OBptiQdn5sc75R4K0ChFB6/Palette-Material-Theme).
 
-A number of third party dependencies are included in this template. They are also documented inside the [documentation folder](/documentation). The files inside this documentation folder are written in such a way that you can keep them in your real project, to let team members read up on why dependencies are included and how they work.
-
-The dependencies in the template include:
-
+## Libraries Used
+* [CameraX](https://developer.android.com/training/camerax) capturing colors.
+* [Jetpack compose](https://developer.android.com/jetpack/androidx/releases/compose) for UI.
+* [Compose Destination](https://github.com/raamcosta/compose-destinations) for navigation.
+* [Hilt](https://dagger.dev/hilt/) Dependency Injection.
+* [Mockk](https://github.com/mockk/mockk) Testing.
 * [Ktlint](/documentation/StaticAnalysis.md) for formatting.
-* [Git Hooks](/documentation/GitHooks.md) for automatically perform static analysis checks. 
 * [Gradle Versions Plugin](/documentation/VersionsPlugin.md) for checking all dependencies for new versions.
 * [GitHub Actions](/documentation/GitHubActions.md) for running continuous integration and ensuring code quality with every PR. 
 
-### Templates
 
-There are also templates within this template. This repo comes shipped with a [Pull Request Template](/.github/pull_request_template.md) that will help you and your team write organized and detailed pull request descriptions. 
 
 ## Dependency Setup
 
