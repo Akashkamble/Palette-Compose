@@ -10,4 +10,5 @@ sealed class PaletteDetailState(open val paletteName: String) {
         val selectedIndex: Int = 0,
     ) : PaletteDetailState(paletteName = palette.name)
     data class ErrorState(val error: UIText) : PaletteDetailState("")
+    object CloseDetailsScreen : PaletteDetailState("")
 }

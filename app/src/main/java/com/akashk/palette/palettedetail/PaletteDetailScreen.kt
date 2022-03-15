@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
@@ -33,6 +35,14 @@ fun PaletteDetailScreen(
     viewModel: PaletteDetailsViewModel = hiltViewModel(),
 ) {
     val viewState = viewModel.viewState.collectAsState()
+
+    DisposableEffect(key1 = viewState.value){
+        if(viewState.value is PaletteDetailState.CloseDetailsScreen){
+            navigator.popBackStack()
+        }
+        onDispose {  }
+    }
+
     LaunchedEffect(key1 = Unit) {
         viewModel.fetchPaletteById(palette.id)
     }
@@ -42,8 +52,8 @@ fun PaletteDetailScreen(
         onSelectedColorIndex = { selectedIndex ->
             viewModel.updateSelectedIndex(selectedIndex)
         },
-        onAddColor = { palette ->
-            navigator.navigate(ColorPickerScreenDestination(palette = palette))
+        onAddColor = {
+            navigator.navigate(ColorPickerScreenDestination(palette = it))
         },
         onDeleteColor = {
             viewModel.deleteSelectedColor()
@@ -62,7 +72,7 @@ fun PaletteDetailsContent(
     onSelectedColorIndex: (index: Int) -> Unit,
     onAddColor: (palette: Palette) -> Unit,
     onDeleteColor: () -> Unit,
-    onRenamePalette: () -> Unit
+    onRenamePalette: () -> Unit,
 ) {
     when (viewState) {
         is PaletteDetailState.CurrentPalette -> {
@@ -111,6 +121,9 @@ fun PaletteDetailsContent(
         }
         is PaletteDetailState.IsLoading -> {
             PaletteCircularProgressIndicator()
+        }
+        else -> {
+            Text(text = "Something went wrong")
         }
     }
 }

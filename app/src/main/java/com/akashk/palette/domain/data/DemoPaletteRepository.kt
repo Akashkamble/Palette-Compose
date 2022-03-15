@@ -40,11 +40,13 @@ class DemoPaletteRepository @Inject constructor() : PaletteRepository {
     }
 
     override suspend fun deletePalette(palette: Palette): Result<Unit> {
-        data.remove(palette)
+        val palette = data.find { p -> p.id == palette.id }
+        val index = data.indexOf(palette)
+        data.removeAt(index)
         return Result.Success(Unit)
     }
 
-    override fun updatePalette(newPalette: Palette): Result<Unit> {
+    override suspend fun updatePalette(newPalette: Palette): Result<Unit> {
         val palette = data.find { p -> p.id == newPalette.id }
         val index = data.indexOf(palette)
         data.removeAt(index = index)
