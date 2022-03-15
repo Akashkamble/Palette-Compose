@@ -36,11 +36,11 @@ fun PaletteDetailScreen(
 ) {
     val viewState = viewModel.viewState.collectAsState()
 
-    DisposableEffect(key1 = viewState.value){
-        if(viewState.value is PaletteDetailState.CloseDetailsScreen){
+    DisposableEffect(key1 = viewState.value) {
+        if (viewState.value is PaletteDetailState.CloseDetailsScreen) {
             navigator.popBackStack()
         }
-        onDispose {  }
+        onDispose { }
     }
 
     LaunchedEffect(key1 = Unit) {
