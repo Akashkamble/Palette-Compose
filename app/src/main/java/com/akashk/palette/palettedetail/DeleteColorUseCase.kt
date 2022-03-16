@@ -3,9 +3,10 @@ package com.akashk.palette.palettedetail
 import com.akashk.palette.core.ui.UIText
 import com.akashk.palette.domain.data.Palette
 import com.akashk.palette.domain.data.PaletteRepository
+import javax.inject.Inject
 
-class DeleteColorUseCase(private val repo: PaletteRepository) {
-    suspend operator fun invoke(viewState: PaletteDetailState): PaletteDetailState {
+class DeleteColorUseCase @Inject constructor(private val repo: PaletteRepository) : IDeleteColorUseCase {
+    override suspend operator fun invoke(viewState: PaletteDetailState): PaletteDetailState {
         if (viewState is PaletteDetailState.CurrentPalette) {
             var selectedIndex = viewState.selectedIndex
             val currentPalette = viewState.palette

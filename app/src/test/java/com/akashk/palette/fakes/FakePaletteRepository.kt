@@ -4,6 +4,7 @@ import com.akashk.palette.core.Result
 import com.akashk.palette.domain.data.Palette
 import com.akashk.palette.domain.data.PaletteRepository
 import io.mockk.coEvery
+import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.flow.flowOf
 
@@ -14,5 +15,17 @@ class FakePaletteRepository {
         coEvery {
             mock.fetchAllPalettes()
         } returns flowOf(result)
+    }
+
+    fun mockFetchPaletteById(palette: Palette) {
+        every {
+            mock.fetchPaletteById(any())
+        } returns palette
+    }
+
+    fun mockDeletePalette(palette: Palette) {
+        coEvery {
+            mock.deletePalette(palette = palette)
+        } returns Result.Success(Unit)
     }
 }

@@ -48,7 +48,9 @@ fun PaletteDetailScreen(
     }
     PaletteDetailsContent(
         viewState = viewState.value,
-        onDeletePalette = {},
+        onDeletePalette = {
+            viewModel.deletePalette()
+        },
         onSelectedColorIndex = { selectedIndex ->
             viewModel.updateSelectedIndex(selectedIndex)
         },

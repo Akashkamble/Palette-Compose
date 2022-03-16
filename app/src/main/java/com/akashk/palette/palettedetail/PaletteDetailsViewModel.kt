@@ -17,10 +17,9 @@ import javax.inject.Inject
 @HiltViewModel
 class PaletteDetailsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    private val paletteRepository: PaletteRepository
+    private val paletteRepository: PaletteRepository,
+    private val useCase: IDeleteColorUseCase,
 ) : ViewModel() {
-
-    private val useCase = DeleteColorUseCase(paletteRepository)
 
     private var selectedPalette: Palette = PaletteDetailScreenDestination
         .argsFrom(savedStateHandle)
@@ -48,6 +47,15 @@ class PaletteDetailsViewModel @Inject constructor(
         viewModelScope.launch {
             val newState = async { useCase.invoke(viewState.value) }
             _viewState.update { newState.await() }
+        }
+    }
+
+    fun deletePalette() {
+        viewModelScope.launch {
+            paletteRepository.deletePalette(selectedPalette)
+            _viewState.update {
+                PaletteDetailState.CloseDetailsScreen
+            }
         }
     }
 }
