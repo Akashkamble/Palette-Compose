@@ -80,7 +80,9 @@ fun CreateNewPaletteContent(
         PaletteTextField(
             text = viewState.paletteName,
             labelText = "Enter Palette Name",
-            modifier = Modifier.fillMaxWidth().testTag("palette_name_text_field"),
+            modifier = Modifier
+                .fillMaxWidth()
+                .testTag("palette_name_text_field"),
             onTextChange = onTextChanged,
             errorMessage = viewState.paletteNameError?.getString()
         )
