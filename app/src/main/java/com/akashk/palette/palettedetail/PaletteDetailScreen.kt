@@ -1,5 +1,6 @@
 package com.akashk.palette.palettedetail
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,6 +14,7 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.akashk.palette.core.ui.components.PaletteCircularProgressIndicator
@@ -35,7 +37,7 @@ fun PaletteDetailScreen(
     viewModel: PaletteDetailsViewModel = hiltViewModel(),
 ) {
     val viewState = viewModel.viewState.collectAsState()
-
+    val context = LocalContext.current
     DisposableEffect(key1 = viewState.value) {
         if (viewState.value is PaletteDetailState.CloseDetailsScreen) {
             navigator.popBackStack()
@@ -61,6 +63,7 @@ fun PaletteDetailScreen(
             viewModel.deleteSelectedColor()
         },
         onRenamePalette = {
+            Toast.makeText(context, "Not Implemented Yet", Toast.LENGTH_LONG).show()
         }
     )
 }

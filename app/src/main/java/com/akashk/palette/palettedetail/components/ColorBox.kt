@@ -1,5 +1,6 @@
 package com.akashk.palette.palettedetail.components
 
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,6 +24,7 @@ import com.akashk.palette.utils.toComposeColor
 
 @Composable
 fun ColorBox(modifier: Modifier, color: String) {
+    val animatedColor = animateColorAsState(targetValue = color.toComposeColor)
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -38,7 +40,7 @@ fun ColorBox(modifier: Modifier, color: String) {
                 .fillMaxWidth()
                 .fillMaxHeight(0.25f)
                 .clip(RoundedCornerShape(14.dp))
-                .background(color.toComposeColor),
+                .background(animatedColor.value),
         )
         Spacer(modifier = Modifier.height(10.dp))
         Text(
