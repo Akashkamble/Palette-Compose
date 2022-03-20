@@ -13,6 +13,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -23,6 +25,7 @@ fun PaletteDetailsToolBar(
     modifier: Modifier,
     onDeletePalette: () -> Unit
 ) {
+    val haptic = LocalHapticFeedback.current
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -40,6 +43,7 @@ fun PaletteDetailsToolBar(
             imageVector = Icons.Outlined.Delete, contentDescription = "Delete whole palette",
             tint = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier.clickable {
+                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                 onDeletePalette.invoke()
             }
         )
