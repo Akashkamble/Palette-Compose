@@ -28,4 +28,16 @@ class FakePaletteRepository {
             mock.deletePalette(palette = palette)
         } returns Result.Success(Unit)
     }
+
+    fun mockAddPalette(palette: Palette) {
+        coEvery {
+            mock.addPalette(palette = palette)
+        } returns Result.Success(Unit)
+    }
+
+    fun mockUpdatePalette(palette: Palette) {
+        coEvery {
+            mock.updatePalette(palette)
+        } returns Result.Success(Unit)
+    }
 }

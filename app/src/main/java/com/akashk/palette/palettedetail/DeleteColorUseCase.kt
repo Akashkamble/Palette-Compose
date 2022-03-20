@@ -5,6 +5,11 @@ import com.akashk.palette.domain.data.Palette
 import com.akashk.palette.domain.data.PaletteRepository
 import javax.inject.Inject
 
+/**
+ * This use case simplifies the logic of color deletion.
+ * It takes current viewState as Input and returns new viewState after color deletion.
+ */
+
 class DeleteColorUseCase @Inject constructor(private val repo: PaletteRepository) : IDeleteColorUseCase {
     override suspend operator fun invoke(viewState: PaletteDetailState): PaletteDetailState {
         if (viewState is PaletteDetailState.CurrentPalette) {

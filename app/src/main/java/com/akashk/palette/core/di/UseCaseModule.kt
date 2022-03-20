@@ -1,5 +1,7 @@
 package com.akashk.palette.core.di
 
+import com.akashk.palette.colorpicker.AddColorUseCase
+import com.akashk.palette.colorpicker.IAddColorUseCase
 import com.akashk.palette.palettedetail.DeleteColorUseCase
 import com.akashk.palette.palettedetail.IDeleteColorUseCase
 import dagger.Binds
@@ -15,4 +17,8 @@ abstract class UseCaseModule {
     @Binds
     @Singleton
     abstract fun bindDeleteColorUseCase(useCase: DeleteColorUseCase): IDeleteColorUseCase
+
+    @Binds
+    @Singleton
+    abstract fun bindAddColorUseCase(useCase: AddColorUseCase): IAddColorUseCase
 }

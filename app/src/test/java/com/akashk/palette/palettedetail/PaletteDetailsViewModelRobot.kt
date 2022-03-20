@@ -4,7 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import com.akashk.palette.domain.data.Palette
 import com.akashk.palette.fakes.FakeDeleteColorUseCase
 import com.akashk.palette.fakes.FakePaletteRepository
-import com.google.common.truth.Truth
+import com.google.common.truth.Truth.assertThat
 import io.mockk.every
 import io.mockk.mockk
 
@@ -54,6 +54,6 @@ class PaletteDetailsViewModelRobot {
 
     fun assertViewState(expectedViewState: PaletteDetailState) = apply {
         val actualViewState = viewModel.viewState.value
-        Truth.assertThat(actualViewState).isEqualTo(expectedViewState)
+        assertThat(actualViewState).isEqualTo(expectedViewState)
     }
 }
