@@ -10,11 +10,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.update
 
 @HiltViewModel
 class ColorPickerViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    private val paletteRepository: PaletteRepository,
+    private val useCase: IAddColorUseCase
 ) : ViewModel() {
 
     private val _viewState: MutableStateFlow<ColorPickerState> =
@@ -27,40 +29,9 @@ class ColorPickerViewModel @Inject constructor(
     }
 
     fun pickColor(color: String) {
-        val list = (viewState.value as ColorPickerState.CurrentPalette).list
-        if (list.isEmpty()) {
-            _viewState.value = ColorPickerState.CurrentPalette(list = newList(list, color))
-            val newPalette = palette.copy(
-                colorList = (viewState.value as ColorPickerState.CurrentPalette).list.toMutableList(),
-                modifiedAt = System.currentTimeMillis()
-            )
-            viewModelScope.launch {
-                paletteRepository.addPalette(
-                    palette = newPalette
-                )
-            }
-        } else {
-            _viewState.value = ColorPickerState.CurrentPalette(list = newList(list, color))
-            val newPalette = palette.copy(
-                colorList = (viewState.value as ColorPickerState.CurrentPalette).list.toMutableList(),
-                modifiedAt = System.currentTimeMillis()
-            )
-            viewModelScope.launch {
-                paletteRepository.updatePalette(
-                    newPalette = newPalette
-                )
-            }
+        viewModelScope.launch {
+            val newState = async { useCase.invoke(viewState.value, palette, color) }
+            _viewState.update { newState.await() }
         }
     }
-
-    private fun newList(list: List<String>, color: String): List<String> {
-        val newList: MutableList<String> = mutableListOf()
-        newList.addAll(0, list)
-        newList.add(color)
-        return newList
-    }
-}
-
-sealed class ColorPickerState {
-    data class CurrentPalette(val list: List<String> = mutableListOf()) : ColorPickerState()
 }
