@@ -8,7 +8,7 @@ import io.mockk.mockk
 class FakeAddColorUseCase {
     val mock: IAddColorUseCase = mockk()
 
-    fun mockResultOfAddColorUseCase(viewState : ColorPickerState) {
+    fun mockResultOfAddColorUseCase(viewState: ColorPickerState) {
         coEvery {
             mock.invoke(any(), any(), any())
         } returns viewState

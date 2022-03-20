@@ -1,6 +1,7 @@
 package com.akashk.palette
 
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
@@ -15,6 +16,7 @@ import org.junit.runner.Description
  * In our unit tests, we don't have an Android main thread, so we make a call to [Dispatchers.setMain]
  * here.
  */
+@OptIn(ExperimentalCoroutinesApi::class)
 class CoroutinesTestRule(
     private val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
 ) : TestWatcher() {

@@ -4,8 +4,8 @@ import com.akashk.palette.domain.data.Palette
 
 interface IAddColorUseCase {
     suspend operator fun invoke(
-        viewState : ColorPickerState,
+        viewState: ColorPickerState,
         palette: Palette,
-        color : String
-    ) : ColorPickerState
+        color: String
+    ): ColorPickerState
 }

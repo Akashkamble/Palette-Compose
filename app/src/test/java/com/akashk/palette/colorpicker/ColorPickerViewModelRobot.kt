@@ -1,20 +1,14 @@
 package com.akashk.palette.colorpicker
 
-import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.SavedStateHandle
 import com.akashk.palette.domain.data.Palette
 import com.akashk.palette.fakes.FakeAddColorUseCase
-import com.akashk.palette.fakes.FakeDeleteColorUseCase
-import com.akashk.palette.fakes.FakePaletteRepository
-import com.akashk.palette.palettedetail.PaletteDetailState
-import com.akashk.palette.palettedetail.PaletteDetailsViewModel
 import com.google.common.truth.Truth
 import io.mockk.every
 import io.mockk.mockk
 
 class ColorPickerViewModelRobot {
 
-    private val fakePaletteRepository = FakePaletteRepository()
     private val savedStateHandle = mockk<SavedStateHandle>(relaxed = true)
     private lateinit var viewModel: ColorPickerViewModel
     private val useCase = FakeAddColorUseCase()
@@ -27,11 +21,11 @@ class ColorPickerViewModelRobot {
         )
     }
 
-    fun addColor(color : String) = apply {
+    fun addColor(color: String) = apply {
         viewModel.pickColor(color)
     }
 
-    fun mockAddColorUseCaseResult(result : ColorPickerState) = apply {
+    fun mockAddColorUseCaseResult(result: ColorPickerState) = apply {
         useCase.mockResultOfAddColorUseCase(result)
     }
 

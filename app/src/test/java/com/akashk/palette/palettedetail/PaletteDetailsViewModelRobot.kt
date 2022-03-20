@@ -4,7 +4,6 @@ import androidx.lifecycle.SavedStateHandle
 import com.akashk.palette.domain.data.Palette
 import com.akashk.palette.fakes.FakeDeleteColorUseCase
 import com.akashk.palette.fakes.FakePaletteRepository
-import com.google.common.truth.Truth
 import com.google.common.truth.Truth.assertThat
 import io.mockk.every
 import io.mockk.mockk

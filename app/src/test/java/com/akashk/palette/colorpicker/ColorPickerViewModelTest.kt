@@ -2,7 +2,6 @@ package com.akashk.palette.colorpicker
 
 import com.akashk.palette.CoroutinesTestRule
 import com.akashk.palette.domain.data.Palette
-import com.akashk.palette.palettedetail.PaletteDetailState
 import org.junit.Rule
 import org.junit.Test
 

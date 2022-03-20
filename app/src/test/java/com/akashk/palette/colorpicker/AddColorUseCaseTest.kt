@@ -3,7 +3,6 @@ package com.akashk.palette.colorpicker
 import com.akashk.palette.core.Result
 import com.akashk.palette.domain.data.Palette
 import com.akashk.palette.domain.data.PaletteRepository
-import com.akashk.palette.palettedetail.DeleteColorUseCase
 import com.google.common.truth.Truth.assertThat
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -52,7 +51,7 @@ class AddColorUseCaseTest {
         val viewState = ColorPickerState.CurrentPalette(
             palette.colorList
         )
-        val expectedState = ColorPickerState.CurrentPalette(listOf("#FFFFFF",newColor))
+        val expectedState = ColorPickerState.CurrentPalette(listOf("#FFFFFF", newColor))
         coEvery { repo.updatePalette(any()) } returns Result.Success(Unit)
         val newState = useCase.invoke(viewState, palette, newColor)
         coVerify { repo.updatePalette(any()) }
