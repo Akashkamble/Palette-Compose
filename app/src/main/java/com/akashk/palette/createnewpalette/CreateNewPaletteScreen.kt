@@ -15,6 +15,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -78,7 +80,7 @@ fun CreateNewPaletteContent(
         verticalArrangement = Arrangement.SpaceAround,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
+        val haptic = LocalHapticFeedback.current
         PaletteTextField(
             text = viewState.paletteName,
             labelText = "Enter Palette Name",
@@ -90,7 +92,10 @@ fun CreateNewPaletteContent(
         )
         Spacer(modifier = Modifier.height(60.dp))
         Button(
-            onClick = onAddClick,
+            onClick = {
+                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                onAddClick.invoke()
+            },
             modifier = Modifier.fillMaxWidth(0.9f)
         ) {
             Text(

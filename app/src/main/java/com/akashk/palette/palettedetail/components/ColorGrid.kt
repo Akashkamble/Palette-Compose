@@ -23,6 +23,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import com.akashk.palette.utils.toComposeColor
@@ -35,6 +37,7 @@ fun ColorGrid(
     modifier: Modifier,
     onSelectedColorIndex: (index: Int) -> Unit
 ) {
+    val haptic = LocalHapticFeedback.current
     val interactionSource = remember {
         MutableInteractionSource()
     }
@@ -60,6 +63,7 @@ fun ColorGrid(
                         indication = null,
                         interactionSource = interactionSource,
                         onClick = {
+                            haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                             onSelectedColorIndex.invoke(index)
                         }
                     )

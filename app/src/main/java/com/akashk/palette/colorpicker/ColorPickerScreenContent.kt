@@ -27,6 +27,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -40,6 +42,7 @@ fun ColorPickerScreenContent(
     pickColor: (color: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val haptic = LocalHapticFeedback.current
     Surface(modifier = modifier.fillMaxSize()) {
         Box(
             modifier = modifier,
@@ -72,6 +75,7 @@ fun ColorPickerScreenContent(
                 AddedColorList(colorList = (viewState as ColorPickerState.CurrentPalette).list)
                 Button(
                     onClick = {
+                        haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                         pickColor.invoke(String.format("#%06X", 0xFFFFFF and currentColor))
                     },
                     shape = CircleShape,

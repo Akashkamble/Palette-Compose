@@ -13,6 +13,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 
@@ -23,6 +25,7 @@ fun PaletteDetailsBottomNavigationBar(
     onAddColors: () -> Unit,
     onRenamePalette: () -> Unit
 ) {
+    val haptic = LocalHapticFeedback.current
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -32,7 +35,10 @@ fun PaletteDetailsBottomNavigationBar(
             elevation = 0.dp
         ) {
             BottomNavigationItem(
-                onClick = onDeleteColor,
+                onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                    onDeleteColor.invoke()
+                },
                 icon = {
                     Icon(
                         imageVector = Icons.Outlined.Delete,
@@ -50,7 +56,10 @@ fun PaletteDetailsBottomNavigationBar(
                 modifier = modifier.testTag("delete_color_tag")
             )
             BottomNavigationItem(
-                onClick = onAddColors,
+                onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                    onAddColors.invoke()
+                },
                 icon = {
                     Icon(
                         imageVector = Icons.Outlined.Add,
@@ -68,7 +77,10 @@ fun PaletteDetailsBottomNavigationBar(
                 modifier = modifier.testTag("add_color_tag")
             )
             BottomNavigationItem(
-                onClick = onRenamePalette,
+                onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                    onRenamePalette.invoke()
+                },
                 icon = {
                     Icon(
                         imageVector = Icons.Outlined.Edit,
