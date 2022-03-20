@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS LocalPalette(
+    id TEXT NOT NULL,
+    name TEXT NOT NULL,
+    colors TEXT NOT NULL,
+    modifiedAt TEXT NOT NULL,
+    PRIMARY KEY (id)
+);
+
+selectAll:
+SELECT * FROM LocalPalette;
+
+insertPalette:
+INSERT OR REPLACE INTO LocalPalette(id, name, colors, modifiedAt)
+VALUES ?;
+
+deletePalette:
+DELETE FROM LocalPalette WHERE id = :id;
+
+getPaletteById:
+SELECT * FROM LocalPalette WHERE id = :id;

@@ -1,6 +1,6 @@
 package com.akashk.palette.core.di
 
-import com.akashk.palette.domain.data.DemoPaletteRepository
+import com.akashk.palette.domain.data.LocalPaletteRepository
 import com.akashk.palette.domain.data.PaletteRepository
 import dagger.Binds
 import dagger.Module
@@ -14,5 +14,5 @@ abstract class RepositoryModule {
 
     @Binds
     @Singleton
-    abstract fun bindPaletteRepository(repo: DemoPaletteRepository): PaletteRepository
+    abstract fun bindPaletteRepository(repo: LocalPaletteRepository): PaletteRepository
 }

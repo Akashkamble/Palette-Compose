@@ -20,4 +20,4 @@ val Context.executor: Executor
     get() = ContextCompat.getMainExecutor(this)
 
 val String.toComposeColor
-    get() = Color(android.graphics.Color.parseColor(this))
+    get() = Color(android.graphics.Color.parseColor(this.trim()))
