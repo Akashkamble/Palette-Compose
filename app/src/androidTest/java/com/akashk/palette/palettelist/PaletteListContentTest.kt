@@ -6,6 +6,7 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.akashk.palette.domain.data.Palette
 import com.google.common.truth.Truth.assertThat
@@ -133,5 +134,34 @@ class PaletteListContentTest {
             .performClick()
 
         assertThat(isInvoked).isTrue()
+    }
+
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Test
+    fun checkIfEmptyStateIsVisible() {
+        composeTestRule.setContent {
+            PaletteScreenContent(
+                viewState = PaletteListViewState(
+                    isLoading = false,
+                    palettes = listOf(),
+                    errorMessage = null
+                ),
+                onAddClick = {},
+                onPaletteClick = {}
+            )
+        }
+
+        composeTestRule
+            .onNodeWithContentDescription("Add new palette")
+            .assertIsDisplayed()
+        composeTestRule
+            .onNodeWithContentDescription("Empty List")
+            .assertIsDisplayed()
+        composeTestRule
+            .onNodeWithText("Palette is not added yet.")
+            .assertIsDisplayed()
+        composeTestRule
+            .onNodeWithText("Click on the + to add new Palette.")
+            .assertIsDisplayed()
     }
 }

@@ -47,6 +47,7 @@ fun PaletteTextField(
                 fontSize = 18.sp
             ),
             maxLines = maxLines,
+            singleLine = true,
             isError = !errorMessage.isNullOrEmpty()
         )
         if (!errorMessage.isNullOrEmpty()) {
