@@ -26,6 +26,7 @@ import com.akashk.palette.core.ui.getString
 import com.akashk.palette.destinations.ColorPickerScreenDestination
 import com.akashk.palette.domain.data.Palette
 import com.akashk.palette.ui.theme.PaletteTheme
+import com.google.accompanist.insets.navigationBarsWithImePadding
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import java.util.UUID
@@ -72,7 +73,8 @@ fun CreateNewPaletteContent(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(all = 16.dp),
+            .padding(all = 16.dp)
+            .navigationBarsWithImePadding(),
         verticalArrangement = Arrangement.SpaceAround,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
