@@ -17,6 +17,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -74,11 +76,15 @@ private fun EmptyPaletteList(
     onAddClick: () -> Unit,
     modifier: Modifier
 ) {
+    val haptic = LocalHapticFeedback.current
     Scaffold(
         modifier = modifier.fillMaxSize(),
         floatingActionButton = {
             FloatingActionButton(
-                onClick = onAddClick,
+                onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                    onAddClick.invoke()
+                },
                 containerColor = MaterialTheme.colorScheme.primary
             ) {
                 Icon(
@@ -125,11 +131,15 @@ private fun LoadedPaletteContent(
     onPaletteClick: (palette: Palette) -> Unit,
     modifier: Modifier
 ) {
+    val haptic = LocalHapticFeedback.current
     Scaffold(
         modifier = modifier.fillMaxSize(),
         floatingActionButton = {
             FloatingActionButton(
-                onClick = onAddClick,
+                onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                    onAddClick.invoke()
+                },
                 containerColor = MaterialTheme.colorScheme.primary
             ) {
                 Icon(
