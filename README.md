@@ -1,13 +1,15 @@
 # Palette App
 
+![GooglePlayStore](https://user-images.githubusercontent.com/13314984/159171617-57360258-4a0c-493e-b75f-a01dd24ef165.png)
+
 The app that let you capture the colors of your surrounding.
-- You can capture the colors and create palettes.
 
 ## App Design
 You can check the app design [here](https://www.figma.com/file/OBptiQdn5sc75R4K0ChFB6/Palette-Material-Theme).
 
 ## Libraries Used
 * [CameraX](https://developer.android.com/training/camerax) capturing colors.
+* [SQLDelight](https://cashapp.github.io/sqldelight/android_sqlite/) Database.
 * [Jetpack compose](https://developer.android.com/jetpack/androidx/releases/compose) for UI.
 * [Compose Destination](https://github.com/raamcosta/compose-destinations) for navigation.
 * [Hilt](https://dagger.dev/hilt/) Dependency Injection.
