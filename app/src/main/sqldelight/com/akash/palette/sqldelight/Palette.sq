@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS LocalPalette(
 );
 
 selectAll:
-SELECT * FROM LocalPalette;
+SELECT * FROM LocalPalette ORDER BY modifiedAt DESC;
 
 insertPalette:
 INSERT OR REPLACE INTO LocalPalette(id, name, colors, modifiedAt)

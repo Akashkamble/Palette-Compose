@@ -16,24 +16,24 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class DataModule {
 
-     @Provides
-     @Singleton
-     fun provideSqlDelightDataBase(
-         @ApplicationContext
-         applicationContext: Context
-     ) : Database {
-         val driver: SqlDriver = AndroidSqliteDriver(
-             schema = Database.Schema,
-             context = applicationContext,
-             name  = "palette.db"
-         )
-         return Database(driver)
-     }
+    @Provides
+    @Singleton
+    fun provideSqlDelightDataBase(
+        @ApplicationContext
+        applicationContext: Context
+    ): Database {
+        val driver: SqlDriver = AndroidSqliteDriver(
+            schema = Database.Schema,
+            context = applicationContext,
+            name = "palette.db"
+        )
+        return Database(driver)
+    }
 
     @Provides
     fun providePaletteQueries(
         database: Database
-    ) : PaletteQueries {
+    ): PaletteQueries {
         return database.paletteQueries
     }
 }

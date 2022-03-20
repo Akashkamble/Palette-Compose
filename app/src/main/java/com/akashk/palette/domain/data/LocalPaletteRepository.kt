@@ -5,10 +5,10 @@ import com.akash.palette.sqldelight.PaletteQueries
 import com.akashk.palette.core.Result
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
-import java.lang.Exception
-import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import java.lang.Exception
+import javax.inject.Inject
 
 class LocalPaletteRepository @Inject constructor(
     private val queries: PaletteQueries
@@ -30,17 +30,16 @@ class LocalPaletteRepository @Inject constructor(
             queries
                 .insertPalette(palette.toLocalPalette())
             Result.Success(Unit)
-        } catch (e : Exception) {
+        } catch (e: Exception) {
             Result.Error(e)
         }
-
     }
 
     override suspend fun deletePalette(palette: Palette): Result<Unit> {
         return try {
             queries.deletePalette(palette.id)
             Result.Success(Unit)
-        } catch (e : Exception) {
+        } catch (e: Exception) {
             Result.Error(e)
         }
     }
@@ -49,7 +48,7 @@ class LocalPaletteRepository @Inject constructor(
         return try {
             queries.insertPalette(newPalette.toLocalPalette())
             Result.Success(Unit)
-        } catch (e : Exception) {
+        } catch (e: Exception) {
             Result.Error(e)
         }
     }
@@ -60,13 +59,12 @@ class LocalPaletteRepository @Inject constructor(
                 .getPaletteById(id)
                 .executeAsOne()
                 .toPalette()
-        } catch (e : Exception) {
+        } catch (e: Exception) {
             throw IllegalArgumentException("palette with provided id is not present in the database")
         }
     }
 
-
-    private fun LocalPalette.toPalette() : Palette {
+    private fun LocalPalette.toPalette(): Palette {
         return Palette(
             id = this.id,
             name = this.name,
@@ -75,7 +73,7 @@ class LocalPaletteRepository @Inject constructor(
         )
     }
 
-    private fun Palette.toLocalPalette() : LocalPalette {
+    private fun Palette.toLocalPalette(): LocalPalette {
         return LocalPalette(
             id = this.id,
             name = this.name,
