@@ -71,7 +71,7 @@ fun PaletteScreenContent(
 @ExperimentalMaterial3Api
 @Composable
 private fun EmptyPaletteList(
-    onAddClick :() -> Unit,
+    onAddClick: () -> Unit,
     modifier: Modifier
 ) {
     Scaffold(
