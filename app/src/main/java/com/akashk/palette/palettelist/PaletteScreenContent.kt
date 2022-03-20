@@ -53,7 +53,7 @@ fun PaletteScreenContent(
                         .align(Alignment.Center)
                         .testTag("loading palette list"),
 
-                    )
+                )
             }
             viewState.palettes.isNotEmpty() -> {
                 LoadedPaletteContent(
