@@ -1,5 +1,6 @@
 package com.akashk.palette.palettelist
 
+import android.annotation.SuppressLint
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -70,6 +71,7 @@ fun PaletteScreenContent(
     }
 }
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @ExperimentalMaterial3Api
 @Composable
 private fun EmptyPaletteList(
@@ -123,6 +125,7 @@ private fun EmptyPaletteList(
     }
 }
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @ExperimentalMaterial3Api
 @Composable
 private fun LoadedPaletteContent(

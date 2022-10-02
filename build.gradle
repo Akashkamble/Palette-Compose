@@ -9,7 +9,7 @@ buildscript {
     ext.versionsPluginVersion = "0.29.0"
 
     // https://developer.android.com/jetpack/androidx/releases/hilt
-    ext.hiltVersion = "2.40.5"
+    ext.hiltVersion = "2.41"
 
     repositories {
         google()
@@ -20,7 +20,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.android.tools.build:gradle:7.0.4"
+        classpath 'com.android.tools.build:gradle:7.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "org.jlleitschuh.gradle:ktlint-gradle:$ktlintPluginVersion"
         classpath "com.github.ben-manes:gradle-versions-plugin:$versionsPluginVersion"
