@@ -1,12 +1,7 @@
 package com.akashk.palette.palettedetails
 
 import androidx.activity.ComponentActivity
-import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.onNodeWithContentDescription
-import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.test.onNodeWithText
-import androidx.compose.ui.test.performClick
 import com.akashk.palette.domain.data.Palette
 import com.akashk.palette.palettedetail.PaletteDetailState
 import com.akashk.palette.palettedetail.PaletteDetailsContent
@@ -39,36 +34,22 @@ class PaletteDetailsScreenContentTest {
                 onRenamePalette = {}
             )
         }
-        /*----Palette ToolBar Nodes-----*/
-        composeTestRule
-            .onNodeWithText(palette.name)
-            .assertIsDisplayed()
-        composeTestRule
-            .onNodeWithContentDescription("Delete whole palette")
-            .assertIsDisplayed()
 
-        /*----Palette BottomNav Nodes-----*/
-        composeTestRule
-            .onNodeWithTag("delete_color_tag")
-            .assertIsDisplayed()
-        composeTestRule
-            .onNodeWithTag("add_color_tag")
-            .assertIsDisplayed()
-        composeTestRule
-            .onNodeWithTag("rename_palette_tag")
-            .assertIsDisplayed()
+        paletteDetailsScreenRobot(composeTestRule) {
+            /*----Palette ToolBar Nodes-----*/
+            toolBarWithPaletteNameVisible(palette)
+            deletePaletteIconVisible()
 
-        /*----Palette ColorBox Nodes-----*/
-        composeTestRule
-            .onNodeWithTag("color_box_tag")
-            .assertIsDisplayed()
-        composeTestRule
-            .onNodeWithText("#6750a4")
-            .assertIsDisplayed()
+            /*----Palette BottomNav Nodes-----*/
+            allNavItemsVisible()
 
-        /*----Palette ColorGrid Nodes-----*/
-        composeTestRule
-            .onNodeWithTag("color_item_${palette.colorList[0]}")
+            /*----Palette ColorBox Nodes-----*/
+            colorBoxVisible()
+            hexColorTextVisible(palette)
+
+            /*----Palette ColorGrid Nodes-----*/
+            colorGridItemsVisible(palette)
+        }
     }
 
     @Test
@@ -88,9 +69,9 @@ class PaletteDetailsScreenContentTest {
             )
         }
 
-        composeTestRule
-            .onNodeWithContentDescription("Delete whole palette")
-            .performClick()
+        paletteDetailsScreenRobot(composeTestRule) {
+            deletePaletteClicked()
+        }
 
         assertThat(isInvoked).isTrue()
     }
@@ -112,10 +93,9 @@ class PaletteDetailsScreenContentTest {
             )
         }
 
-        composeTestRule
-            .onNodeWithTag("color_item_${palette.colorList[0]}")
-            .performClick()
-
+        paletteDetailsScreenRobot(composeTestRule) {
+            colorItemAtIndexClicked(palette, 0)
+        }
         assertThat(isInvoked).isTrue()
     }
 
@@ -136,9 +116,9 @@ class PaletteDetailsScreenContentTest {
             )
         }
 
-        composeTestRule
-            .onNodeWithTag("add_color_tag")
-            .performClick()
+        paletteDetailsScreenRobot(composeTestRule) {
+            addColorNavItemClicked()
+        }
 
         assertThat(isInvoked).isTrue()
     }
@@ -160,9 +140,9 @@ class PaletteDetailsScreenContentTest {
             )
         }
 
-        composeTestRule
-            .onNodeWithTag("rename_palette_tag")
-            .performClick()
+        paletteDetailsScreenRobot(composeTestRule) {
+            renamePaletteNavItemClicked()
+        }
 
         assertThat(isInvoked).isTrue()
     }
@@ -184,9 +164,9 @@ class PaletteDetailsScreenContentTest {
             )
         }
 
-        composeTestRule
-            .onNodeWithTag("delete_color_tag")
-            .performClick()
+        paletteDetailsScreenRobot(composeTestRule) {
+            deleteColorNavItemClicked()
+        }
 
         assertThat(isInvoked).isTrue()
     }
