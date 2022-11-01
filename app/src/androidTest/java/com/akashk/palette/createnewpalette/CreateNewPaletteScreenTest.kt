@@ -2,12 +2,7 @@ package com.akashk.palette.createnewpalette
 
 import androidx.activity.ComponentActivity
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.test.onNodeWithText
-import androidx.compose.ui.test.performClick
-import androidx.compose.ui.test.performTextInput
 import com.akashk.palette.core.ui.UIText
 import com.google.common.truth.Truth.assertThat
 import org.junit.Rule
@@ -29,12 +24,9 @@ class CreateNewPaletteScreenTest {
             )
         }
 
-        composeTestRule
-            .onNodeWithTag("palette_name_text_field")
-            .assertIsDisplayed()
-        composeTestRule
-            .onNodeWithText("Continue")
-            .assertIsDisplayed()
+        createNewPaletteRobot(composeTestRule) {
+            everythingExceptErrorMessageIsVisible()
+        }
     }
 
     @OptIn(ExperimentalMaterial3Api::class)
@@ -52,9 +44,10 @@ class CreateNewPaletteScreenTest {
                 }
             )
         }
-        composeTestRule
-            .onNodeWithTag("palette_name_text_field")
-            .performTextInput("Palette Name")
+
+        createNewPaletteRobot(composeTestRule) {
+            enterPaletteName("Palette Name")
+        }
 
         assertThat(isInvoked).isTrue()
     }
@@ -74,9 +67,10 @@ class CreateNewPaletteScreenTest {
                 }
             )
         }
-        composeTestRule
-            .onNodeWithText("Continue")
-            .performClick()
+
+        createNewPaletteRobot(composeTestRule) {
+            clickContinueButton()
+        }
 
         assertThat(isInvoked).isTrue()
     }
@@ -93,8 +87,9 @@ class CreateNewPaletteScreenTest {
                 onAddClick = {}
             )
         }
-        composeTestRule
-            .onNodeWithText(errorMessage)
-            .assertIsDisplayed()
+
+        createNewPaletteRobot(composeTestRule) {
+            errorMessageIsVisible(errorMessage)
+        }
     }
 }

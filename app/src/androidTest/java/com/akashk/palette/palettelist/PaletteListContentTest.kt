@@ -2,12 +2,7 @@ package com.akashk.palette.palettelist
 
 import androidx.activity.ComponentActivity
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.onNodeWithContentDescription
-import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.test.onNodeWithText
-import androidx.compose.ui.test.performClick
 import com.akashk.palette.domain.data.Palette
 import com.google.common.truth.Truth.assertThat
 import org.junit.Rule
@@ -39,9 +34,9 @@ class PaletteListContentTest {
             )
         }
 
-        composeTestRule
-            .onNodeWithContentDescription("Add new palette")
-            .assertIsDisplayed()
+        paletteListRobot(composeTestRule) {
+            fabVisible()
+        }
     }
 
     @OptIn(ExperimentalMaterial3Api::class)
@@ -59,9 +54,9 @@ class PaletteListContentTest {
             )
         }
 
-        composeTestRule
-            .onNodeWithTag("loading palette list")
-            .assertIsDisplayed()
+        paletteListRobot(composeTestRule) {
+            circularIndicatorVisible()
+        }
     }
 
     @OptIn(ExperimentalMaterial3Api::class)
@@ -79,9 +74,9 @@ class PaletteListContentTest {
             )
         }
 
-        composeTestRule
-            .onNodeWithTag("Palette_${palette.id}")
-            .assertIsDisplayed()
+        paletteListRobot(composeTestRule) {
+            listWithPaletteIdsVisible(listOf(palette))
+        }
     }
 
     @OptIn(ExperimentalMaterial3Api::class)
@@ -102,9 +97,9 @@ class PaletteListContentTest {
             )
         }
 
-        composeTestRule
-            .onNodeWithContentDescription("Add new palette")
-            .performClick()
+        paletteListRobot(composeTestRule) {
+            clickFab()
+        }
 
         assertThat(isInvoked).isTrue()
     }
@@ -121,7 +116,7 @@ class PaletteListContentTest {
                     errorMessage = null
                 ),
                 onAddClick = {
-                    isInvoked = true
+                    isInvoked = false
                 },
                 onPaletteClick = {
                     isInvoked = true
@@ -129,9 +124,9 @@ class PaletteListContentTest {
             )
         }
 
-        composeTestRule
-            .onNodeWithTag("Palette_${palette.id}")
-            .performClick()
+        paletteListRobot(composeTestRule) {
+            clickPaletteWithId(palette)
+        }
 
         assertThat(isInvoked).isTrue()
     }
@@ -151,17 +146,11 @@ class PaletteListContentTest {
             )
         }
 
-        composeTestRule
-            .onNodeWithContentDescription("Add new palette")
-            .assertIsDisplayed()
-        composeTestRule
-            .onNodeWithContentDescription("Empty List")
-            .assertIsDisplayed()
-        composeTestRule
-            .onNodeWithText("Palette is not added yet.")
-            .assertIsDisplayed()
-        composeTestRule
-            .onNodeWithText("Click on the + to add new Palette.")
-            .assertIsDisplayed()
+        paletteListRobot(composeTestRule) {
+            fabVisible()
+            emptyListIconVisible()
+            emptyListTextVisible()
+            emptyListSubTextVisible()
+        }
     }
 }
