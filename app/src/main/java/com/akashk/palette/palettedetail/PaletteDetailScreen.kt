@@ -105,7 +105,11 @@ fun PaletteDetailsContent(
                 Column(
                     modifier = modifier
                         .fillMaxSize()
-                        .padding(16.dp)
+                        .padding(
+                            start = 16.dp,
+                            end = 16.dp,
+                            top = it.calculateTopPadding()
+                        )
                 ) {
                     ColorBox(
                         modifier = modifier,

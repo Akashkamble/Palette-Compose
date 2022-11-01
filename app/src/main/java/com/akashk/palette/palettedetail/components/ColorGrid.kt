@@ -8,18 +8,14 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -54,7 +50,10 @@ fun ColorGrid(
                     .size(50.dp)
                     .border(
                         width = 3.dp,
-                        color = Color(0x33E0D9D9),
+                        color = if (selectedIndex == index)
+                            MaterialTheme.colorScheme.primary
+                        else
+                            Color(0x33E0D9D9),
                         shape = RoundedCornerShape(8.dp)
                     )
                     .clip(RoundedCornerShape(8.dp))
@@ -68,25 +67,7 @@ fun ColorGrid(
                         }
                     )
                     .testTag("color_item_$color")
-            ) {
-                if (selectedIndex == index) {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(
-                                color = Color(
-                                    0x80000000
-                                )
-                            ),
-                        contentAlignment = Alignment.Center,
-                    ) {
-                        Icon(
-                            Icons.Filled.Check, "Selected Color",
-                            tint = Color.White
-                        )
-                    }
-                }
-            }
+            ) {}
         }
     }
 }

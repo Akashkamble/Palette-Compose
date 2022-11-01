@@ -27,6 +27,7 @@ fun ColorBox(modifier: Modifier, color: String) {
     val animatedColor = animateColorAsState(targetValue = color.toComposeColor)
     Column(
         modifier = modifier
+            .clip(shape = RoundedCornerShape(size = 14.dp))
             .fillMaxWidth()
             .background(
                 color = Color(0x33E0D9D9)
